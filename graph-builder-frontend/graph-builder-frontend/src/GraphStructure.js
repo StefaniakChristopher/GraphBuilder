@@ -128,7 +128,7 @@ function GraphStructure(props) {
 
           bars.beginPath();
           bars.fillStyle = getRandomColor();
-          bars.fillRect(xAxisFragmentEnd, lowerLineVerticalPos, canvas.width / 80, 0 - (xAxisMagnitude[i] / barHeightFactor) * yAxisLength);
+          bars.fillRect(xAxisFragmentEnd, lowerLineVerticalPos, 20, 0 - (xAxisMagnitude[i] / barHeightFactor) * yAxisLength - 3);
 
           xAxisSmallLabels.fillStyle = 'white';
           xAxisSmallLabels.font = '12px Arial';
@@ -149,7 +149,7 @@ function GraphStructure(props) {
       xAxisBigLabel.font = '15px Arial'
       xAxisBigLabel.style = 'black'
       xAxisBigLabel.textAlign = 'center';
-      xAxisBigLabel.fillText(xAxisLabel, (xAxisFragmentEnd + leftHandSide) / 2, canvas.height / 1.3)
+      xAxisBigLabel.fillText(xAxisLabel, (xAxisFragmentEnd + leftHandSide) / 2, lowerLineVerticalPos + 70)
 
       titleLabel.fillText(title, (xAxisFragmentEnd + leftHandSide) / 2, canvas.height / 9)
 

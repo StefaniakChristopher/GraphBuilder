@@ -30,52 +30,52 @@ const GraphOptions = ({ graphTitle, setGraphTitle, xAxisLabel, setXAxisLabel, yA
 
 
             <br></br>
+            <div style={{ display: 'inline-block' }}>
+                <label htmlFor="xAxisLabel">X-Axis Label: </label>
+                <input
+                    id="xAxisLabel"
+                    type="text"
+                    value={xAxisLabel}
+                    onChange={(e) => setXAxisLabel(e.target.value)}
+                ></input>
+            </div>
 
-            <label htmlFor="xAxisLabel">X-Axis Label: </label>
-            <input
-                id="xAxisLabel"
-                type="text"
-                value={xAxisLabel}
-                onChange={(e) => setXAxisLabel(e.target.value)}
-            ></input>
+            <div style={{ display: 'inline-block' }}>
+                <label htmlFor="yAxisLabel">Y-Axis Label: </label>
+                <input
+                    id="yAxisLabel"
+                    type="text"
+                    value={yAxisLabel}
+                    onChange={(e) => setYAxisLabel(e.target.value)}
+                ></input>
+            </div>
+            <div style={{ display: 'inline-block' }}>
+                <label htmlFor="categories">Categories (comma-seprated): </label>
+                <textarea
+                    wrap='soft'
+                    spellCheck="false"
+                    id="categories"
+                    type="text"
+                    rows="5"
+                    cols="30"
+                    value={categories}
+                    onChange={(e) => setCategories(e.target.value)}
+                ></textarea>
+            </div>
+            <div style={{ display: 'inline-block' }}>
+                <label htmlFor="xAxisMagnitude">Magnitudes for those Categories (comma-seprated): </label>
+                <textarea
+                    spellCheck="false"
+                    id="xAxisMagnitude"
+                    type="text"
+                    rows="5"
+                    cols="30"
+                    value={xAxisMagnitude}
+                    onChange={(e) => setXAxisMagnitude(e.target.value)}
+                ></textarea>
+                <button type="submit" onClick={() => postGraph(newGraph)}>Create Graph</button>
+            </div>
 
-
-
-            <label htmlFor="yAxisLabel">Y-Axis Label: </label>
-            <input
-                id="yAxisLabel"
-                type="text"
-                value={yAxisLabel}
-                onChange={(e) => setYAxisLabel(e.target.value)}
-            ></input>
-
-
-            <label htmlFor="categories">Categories (comma-seprated): </label>
-            <textarea
-                wrap='soft'
-                spellCheck="false"
-                id="categories"
-                type="text"
-                rows="5" 
-                cols="30"
-                value={categories}
-                onChange={(e) => setCategories(e.target.value)}
-            ></textarea>
-
-
-            <label htmlFor="xAxisMagnitude">Magnitudes for those Categories (comma-seprated): </label>
-            <textarea
-                spellCheck="false"
-                id="xAxisMagnitude"
-                type="text"
-                rows="5" 
-                cols="30"
-                value={xAxisMagnitude}
-                onChange={(e) => setXAxisMagnitude(e.target.value)}
-            ></textarea>
-            <button type="submit" onClick={() => postGraph(newGraph)}>Create Graph</button>
-
-            
         </div>
     )
 }

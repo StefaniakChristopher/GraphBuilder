@@ -21,7 +21,7 @@ function App() {
       id: 0,
       categories: ["Category 1", "Category 2", "Category 3"],
       magnitude: 30,
-      xAxisMagnitude: [13, 4, 23],
+      xAxisMagnitude: [10, 4, 23],
       yAxisIncrements: [5, 10, 15, 20, 25, 30, 35, 40],
       title: "GRAPH TITLE",
       yAxisLabel: "Y axis Label",
