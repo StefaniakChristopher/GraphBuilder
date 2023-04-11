@@ -7,18 +7,18 @@ To run GraphBuilder, you need to install the following:
   
 Once these are installed, create a new folder in Visual Studio and open it
 
-Once there, open a PowerShell Terminal and run this command: git clone https://github.com/StefaniakChristopher/GraphBuilder.git
+Once there, open a PowerShell Terminal and run this command: "git clone https://github.com/StefaniakChristopher/GraphBuilder.git"
 This should clone the project onto your machine
 
 To launch the web app, navigate to the "graph-builder" folder. This folder contains the Springboot backend.
 
-Run this command: ./mvnw spring-boot:run
+Run this command: "./mvnw spring-boot:run"
 
 Next, navigate to the "graph-builder-frontend" (careful, there are two of these folder, make sure you are in the inner one)
 
-Run this command: npm install
+Run this command: "npm install"
 
-Then run this command: npm start
+Then run this command: "npm start"
 
 
 To use the application, input data that you would like to be represented in a bar graph
