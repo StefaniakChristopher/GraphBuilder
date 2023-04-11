@@ -1,6 +1,6 @@
 import React from 'react'
 
-const RetrieveGraph = ({ fetchGraph, setGetGraphID, getGraphID, deleteGraph, deleteGraphID, setDeleteGraphID, currentMessage }) => {
+const RetrieveAndDelete = ({ fetchGraph, setGetGraphID, getGraphID, deleteGraph, deleteGraphID, setDeleteGraphID, currentMessage }) => {
 
 
   return (
@@ -29,4 +29,4 @@ const RetrieveGraph = ({ fetchGraph, setGetGraphID, getGraphID, deleteGraph, del
   )
 }
 
-export default RetrieveGraph
+export default RetrieveAndDelete

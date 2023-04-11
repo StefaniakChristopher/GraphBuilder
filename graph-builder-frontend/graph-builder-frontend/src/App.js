@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import api from 'axios';
 
-import './App.css';
 import GraphOptions from './GraphOptions';
 import GraphStructure from './GraphStructure';
-import RetrieveGraph from './RetrieveGraph';
+import RetrieveAndDelete from './RetrieveAndDelete';
 
 function App() {
   const [getGraphID, setGetGraphID] = useState();
@@ -152,7 +151,7 @@ function App() {
         setCurrentGraph={setCurrentGraph}
         setCurrentMessage={setCurrentMessage}
       />
-      <RetrieveGraph
+      <RetrieveAndDelete
         fetchGraph={fetchGraph}
         getGraphID={getGraphID}
         setGetGraphID={setGetGraphID}

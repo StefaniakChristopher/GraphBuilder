@@ -15,16 +15,12 @@ public abstract class BuildGraph {
 
         return yAxisIncrements;
     }
-}
 
-abstract class CategoryParser {
     public static String [] parseCategories(Graph graph) {
         String[] categories = graph.categories().split(",");
         return categories;
     }
-}
 
-abstract class XAxisMagnitudeParser {
     public static ArrayList<Long> parseXAxisMagnitude(Graph graph) {
         String[] xAxisMagnitudeStringForm = graph.xAxisMagnitude().split(",");
         ArrayList<Long> xAxisMagnitude = new ArrayList<>();
@@ -33,9 +29,7 @@ abstract class XAxisMagnitudeParser {
         }
         return xAxisMagnitude;
     }
-}
 
-abstract class MagnitudeCalculator {
     public static long calcMagnitude(ArrayList<Long> xAxisMagnitude) {
         long magnitude = Math.round(Collections.max(xAxisMagnitude) * 1.1);
         while (magnitude % 10 != 0) {
@@ -43,6 +37,7 @@ abstract class MagnitudeCalculator {
         }
         return magnitude;
     }
+
 }
 
 record builtBarGraph(int id, String xAxisLabel, String yAxisLabel, String[] categories, long magnitude, String title, ArrayList<Long> yAxisIncrements, ArrayList<Long> xAxisMagnitude) {}

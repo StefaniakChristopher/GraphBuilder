@@ -1,5 +1,5 @@
 
-import React, {useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 function getRandomColor() {
   const colors = ["green", "red", "blue", "purple", "aqua"]
@@ -19,6 +19,16 @@ function GraphStructure(props) {
       window.removeEventListener('resize', updateCanvas);
     }
   }, [props.currentGraph]);
+
+  function findMaxNumber(arr) {
+    let maxNumber = arr[0];
+    for (let i = 1; i < arr.length; i++) {
+      if (arr[i] > maxNumber) {
+        maxNumber = arr[i];
+      }
+    }
+    return maxNumber;
+  }
 
   const updateCanvas = () => {
     const { currentGraph, setCurrentMessage } = props;
@@ -75,30 +85,36 @@ function GraphStructure(props) {
 
       var xAxisFragmentStart = leftHandSide;
       const barHeightFactor = yAxisIncrements[yAxisIncrements.length - 1];
-      // yAxisSmallLabels.style.transform = "rotate(-90deg)";
-      // yAxisSmallLabels.style.transformOrigin = "left top";
-      
+
       yAxisBigLabel.beginPath()
       yAxisBigLabel.font = '15px Arial'
       yAxisBigLabel.style = 'red'
       yAxisBigLabel.textAlign = 'center';
       yAxisBigLabel.save()
 
-      yAxisBigLabel.translate(leftHandSide - 60, (lowerLineVerticalPos + upperLineHeight)/2)
-      yAxisBigLabel.rotate(-Math.PI/2)
+      yAxisBigLabel.translate(leftHandSide - 60, (lowerLineVerticalPos + upperLineHeight) / 2)
+      yAxisBigLabel.rotate(-Math.PI / 2)
       yAxisBigLabel.fillText(yAxisLabel, 0, 0)
-      
+
       yAxisBigLabel.closePath()
       yAxisBigLabel.restore()
-      
-      
+
+      let categoryLengths = []
+
+      for (let i = 0; i < categories.length; i++) {
+        var lengthFactor = 0
+        if (i < (categories.length)) {
+          if (categories[i].length > 7)
+            lengthFactor = 80 * Math.log10((categories[i].length - 7))
+          categoryLengths[i] = lengthFactor
+        }
+      }
+
+      lengthFactor = findMaxNumber(categoryLengths)
+
       for (let i = 0; i < categories.length + 1; i++) {
 
-        let lengthFactor = 0
-        if(i < (categories.length)) {
-          if(categories[i].length > 7)
-          lengthFactor = 80 * Math.log10((categories[i].length - 7))
-        }
+
 
         var xAxisFragmentEnd = xAxisFragmentStart + 50 + lengthFactor;
 
@@ -113,32 +129,32 @@ function GraphStructure(props) {
           bars.beginPath();
           bars.fillStyle = getRandomColor();
           bars.fillRect(xAxisFragmentEnd, lowerLineVerticalPos, canvas.width / 80, 0 - (xAxisMagnitude[i] / barHeightFactor) * yAxisLength);
-          
+
           xAxisSmallLabels.fillStyle = 'white';
           xAxisSmallLabels.font = '12px Arial';
           xAxisSmallLabels.textAlign = 'center';
-          xAxisSmallLabels.fillText(categories[i], xAxisFragmentEnd + (canvas.width / 80)/2, lowerLineVerticalPos + 30);
+          xAxisSmallLabels.fillText(categories[i], xAxisFragmentEnd + (canvas.width / 80) / 2, lowerLineVerticalPos + 30);
 
         }
 
-        
+
         xAxisFragmentStart = xAxisFragmentEnd;
 
         console.log("frag: " + xAxisFragmentEnd)
 
       }
 
-      console.log("lhs: "+ leftHandSide)
+      console.log("lhs: " + leftHandSide)
 
       xAxisBigLabel.font = '15px Arial'
       xAxisBigLabel.style = 'black'
       xAxisBigLabel.textAlign = 'center';
-      xAxisBigLabel.fillText(xAxisLabel, (xAxisFragmentEnd + leftHandSide)/2, canvas.height / 1.3)
+      xAxisBigLabel.fillText(xAxisLabel, (xAxisFragmentEnd + leftHandSide) / 2, canvas.height / 1.3)
 
-      titleLabel.fillText(title, (xAxisFragmentEnd + leftHandSide)/2, canvas.height / 9)
+      titleLabel.fillText(title, (xAxisFragmentEnd + leftHandSide) / 2, canvas.height / 9)
 
 
-    } else if(categories || xAxisMagnitude || yAxisIncrements || title || xAxisLabel || yAxisLabel) {
+    } else if (categories || xAxisMagnitude || yAxisIncrements || title || xAxisLabel || yAxisLabel) {
       setCurrentMessage("Graph is incomplete")
     } else {
       setCurrentMessage("Graph does not exist")

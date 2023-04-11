@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 
 
-const GraphOptions = ({ graphTitle, setGraphTitle, xAxisLabel, setXAxisLabel, yAxisLabel, setYAxisLabel, xAxisMagnitude, setXAxisMagnitude, categories, setCategories, newGraph, setNewGraph, graphID, setGraphID, postGraph }) => {
+const GraphOptions = ({ graphTitle, setGraphTitle, xAxisLabel, setXAxisLabel, yAxisLabel, setYAxisLabel, xAxisMagnitude, setXAxisMagnitude, categories, setCategories, newGraph, setNewGraph, postGraph }) => {
 
 
     useEffect(() => {
