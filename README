@@ -1,4 +1,4 @@
-GraphBuilder
+GraphBuilder is an application that allows users to build bar graphs based on a number of inputs. These graphs are stored in an ArrayList and can be retrieved and deleted.
 
 To run GraphBuilder, you need to install the following:
 
