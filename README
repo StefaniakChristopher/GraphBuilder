@@ -1,0 +1,48 @@
+GraphBuilder is an application that allows users to build bar graphs based on a number of inputs. These graphs are stored in an ArrayList and can be retrieved and deleted.
+
+To run GraphBuilder, you need to install the following:
+
+  Node.js
+  JDK
+  
+Once these are installed, create a new folder in Visual Studio and open it
+
+Once there, open a PowerShell Terminal and run this command: "git clone https://github.com/StefaniakChristopher/GraphBuilder.git"
+This should clone the project onto your machine
+
+To launch the web app, navigate to the "graph-builder" folder. This folder contains the Springboot backend.
+
+Run this command: "./mvnw spring-boot:run"
+
+Next, navigate to the "graph-builder-frontend" (careful, there are two of these folder, make sure you are in the inner one)
+
+Run this command: "npm install"
+
+Then run this command: "npm start"
+
+
+To use the application, input data that you would like to be represented in a bar graph
+The label of the input box corresponds to an area on the graph that is intially labled the same as the label for the text box
+For the "Categories" and "Magnitude" input, enter your categories like this:
+
+  Category1,Category2,Category 3,Category4
+
+Where the categories are seprated by commas and having no space after and before the commas
+The Magnitude input follows a similar doctrine, the only difference is that only number are allowed as input
+For example:
+
+  45,23,64,23
+  
+Decimal number are allowed but they will be rounded off, so the only numbers truly applicable are positive integers
+
+When inputing these values, the first category you input will corresspond to the first magnitude you input, and the second category you input will 
+correspond to the second magnitude you input and so on.
+
+Here is an example with our current inputs
+
+  Category1: 45
+  Category2: 23
+  Category 3: 64
+  Category4: 23
+  
+Demo Video: https://drive.google.com/file/d/1oeLMAB49enYbno6JUuurxQbWiEXbc9jq/view?usp=sharing
