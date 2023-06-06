@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gb-backend-deployment
+  labels:
+    app: gb-backend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: gb-backend
+  template:
+    metadata:
+      labels:
+        app: gb-backend
+    spec:
+      containers:
+      - name: gb-backend
+        image: chrisstefaniak/gb-backend:gb-backend
+        imagePullPolicy: Always 
+        ports:
+        - containerPort: 8080
