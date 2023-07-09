@@ -29,6 +29,8 @@ function App() {
     }
   );
 
+  const host = "http://api.graphbuilder.com"
+
   const magnitudeChecker = (xAxisMagnitude) => {
 
     let digitCounter = 0
@@ -81,7 +83,7 @@ function App() {
   const fetchGraph = async (getGraphID) => {
     try {
       console.log(getGraphID);
-      const { data } = await api.get('http://localhost:8080/graphs/' + getGraphID);
+      const { data } = await api.get(host + '/graphs/' + getGraphID);
       const { id, categories, magnitude, xAxisMagnitude, yAxisIncrements, title, yAxisLabel, xAxisLabel } = data;
       const newIncommingGraph = { id, categories, magnitude, xAxisMagnitude, yAxisIncrements, title, yAxisLabel, xAxisLabel };
       console.log(newIncommingGraph);
@@ -100,7 +102,7 @@ function App() {
         if (magnitudeChecker(xAxisMagnitude)) {
           if (categoryChecker(categories)) {
             console.log(newGraph);
-            const response = await api.post('http://localhost:8080/graphs', newGraph);
+            const response = await api.post(host +'/graphs', newGraph);
             setCurrentMessage(response.data)
           } else {
             setCurrentMessage("Individual categories must be lower than 40 characters")
@@ -126,7 +128,7 @@ function App() {
   const deleteGraph = async (deleteGraphID) => {
     try {
       console.log(deleteGraphID)
-      const response = await api.delete('http://localhost:8080/graphs/' + deleteGraphID);
+      const response = await api.delete(host + '/graphs/' + deleteGraphID);
       setCurrentMessage(response.data)
 
     } catch (err) {

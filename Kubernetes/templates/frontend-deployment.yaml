@@ -3,9 +3,9 @@ kind: Deployment
 metadata:
   name: gb-frontend-deployment
   labels:
-    app: gb-frontend324324234
+    app: gb-frontend
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: gb-frontend
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: gb-frontend
-        image: chrisstefaniak/gb-frontend:gb-frontend
+        image: chrisstefaniak/gb-frontend:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 3000
