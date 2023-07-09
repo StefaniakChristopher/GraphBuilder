@@ -44,5 +44,30 @@ Here is an example with our current inputs
   Category2: 23
   Category 3: 64
   Category4: 23
+
+TO RUN WITH KUBERNETES:
+
+    Ensure the installation of the following:
+      Minikube
+      Docker
+      Helm
+      WINDOWS
+
+  1. Start docker daemon
+
+  2. Open powershell and enter "minikube start"
+
+  3. Enter "minikube addons enable ingress"
+
+  4. Navigate to the "GraphBuilderProject" folder and enter "helm install graph-builder ./Kubernetes"
+
+  4. Enter "kubectl get pod --watch" (watch them grow up)
+
+  5. Open another powershell terminal and enter "minikube tunnel"
+
+  6. Ensure that "127.0.0.1 graphbuilder.com" and "127.0.0.1 api.graphbuilder.com" are both in the hosts file by entering "notepad C:\Windows\System32\drivers\etc\hosts" in an administrator command line. They should be on their own seperate lines standalone without a "#" in front of them
+
+  7. Navigate to "graphbuilder.com" on the web browser and have fun
+
   
 Demo Video: https://drive.google.com/file/d/1oeLMAB49enYbno6JUuurxQbWiEXbc9jq/view?usp=sharing
