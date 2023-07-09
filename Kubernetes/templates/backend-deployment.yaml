@@ -5,7 +5,7 @@ metadata:
   labels:
     app: gb-backend
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: gb-backend
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: gb-backend
-        image: chrisstefaniak/gb-backend:gb-backend
+        image: chrisstefaniak/gb-backend:latest
         imagePullPolicy: Always 
         ports:
         - containerPort: 8080
