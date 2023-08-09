@@ -19,7 +19,7 @@ resource "azurerm_kubernetes_cluster" "example" {
     name                = "default"
     node_count          = 1
     vm_size             = "Standard_B2s"
-    os_disk_size_gb     = 15
+    os_disk_size_gb     = 30
     vnet_subnet_id      = azurerm_subnet.example.id
   }
 
@@ -31,7 +31,7 @@ resource "azurerm_kubernetes_cluster" "example" {
 
 resource "azurerm_virtual_network" "example" {
   name                = "netes-vnet"
-  address_space       = ["10.0.0.0/16"]
+  address_space       = ["10.30.0.0/16"]
   location            = azurerm_resource_group.netes.location
   resource_group_name = azurerm_resource_group.netes.name
 }
@@ -40,5 +40,5 @@ resource "azurerm_subnet" "example" {
   name                 = "netes-subnet"
   resource_group_name  = azurerm_resource_group.netes.name
   virtual_network_name = azurerm_virtual_network.example.name
-  address_prefixes     = ["10.0.0.0/24"]
+  address_prefixes     = ["10.30.1.0/24"]
 }

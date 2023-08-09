@@ -29,7 +29,7 @@ function App() {
     }
   );
 
-  const host = "http://api.graphbuilder.com"
+  const host = "http://graphbuilder.com"
 
   const magnitudeChecker = (xAxisMagnitude) => {
 

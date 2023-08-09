@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gb-frontend-deployment
+  labels:
+    app: gb-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gb-frontend
+  template:
+    metadata:
+      labels:
+        app: gb-frontend
+    spec:
+      containers:
+      - name: gb-frontend
+        image: chrisstefaniak/gb-frontend:azure
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000

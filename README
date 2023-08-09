@@ -65,7 +65,7 @@ TO RUN WITH KUBERNETES:
 
   5. Open another powershell terminal and enter "minikube tunnel"
 
-  6. Ensure that "127.0.0.1 graphbuilder.com" and "127.0.0.1 api.graphbuilder.com" are both in the hosts file by entering "notepad C:\Windows\System32\drivers\etc\hosts" in an administrator command line. They should be on their own seperate lines standalone without a "#" in front of them
+  6. Ensure that "127.0.0.1 graphbuilder.com" and "127.0.0.1 api.graphbuilder.com" are both in the hosts file by entering "notepad C:\Windows\System32\drivers\etc\hosts" in an administrator command line. They should be on their own seperate lines standalone without a "#" in front of them (windows is the reason why the IP is 127.0.0.1)
 
   7. Navigate to "graphbuilder.com" on the web browser and have fun
 

@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: gb-ingress
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    # nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
   rules:
@@ -17,11 +17,8 @@ spec:
             name: frontend-service
             port:
               number: 3000
-  - host: api.graphbuilder.com
-    http:
-      paths:
       - pathType: Prefix
-        path: /
+        path: /graphs
         backend:
           service:
             name: backend-service
