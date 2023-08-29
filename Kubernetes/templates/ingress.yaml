@@ -3,7 +3,6 @@ kind: Ingress
 metadata:
   name: gb-ingress
   annotations:
-    # nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
   rules:
@@ -24,3 +23,20 @@ spec:
             name: backend-service
             port:
               number: 8080
+      - pathType: Prefix
+        path: /actuator/prometheus
+        backend:
+          service:
+            name: backend-service
+            port:
+              number: 8080
+  - host: metrics.graphbuilder.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: prometheus-service
+            port:
+              number: 9090

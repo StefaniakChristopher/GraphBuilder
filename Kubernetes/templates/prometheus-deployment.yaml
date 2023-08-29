@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gb-prometheus-deployment
+  labels:
+    app: gb-prometheus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gb-prometheus
+  template:
+    metadata:
+      labels:
+        app: gb-prometheus
+    spec:
+      containers:
+      - name: gb-prometheus
+        image: chrisstefaniak/gb-prometheus:latest
+        imagePullPolicy: Always 
+        ports:
+        - containerPort: 9090
