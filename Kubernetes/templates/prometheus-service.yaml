@@ -7,3 +7,4 @@ spec:
     app: gb-prometheus
   ports:
     - port: 9090
+  type: LoadBalancer
