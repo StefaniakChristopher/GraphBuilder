@@ -51,7 +51,7 @@ public class GBcontroller {
         } else {
             return ResponseEntity.ok().body("Graph not found");
         }
-        
+
     }
 
     @PostMapping("/graphs")
@@ -62,7 +62,9 @@ public class GBcontroller {
 
         long magnitude = BuildGraph.calcMagnitude(xAxisMagnitude);
 
-        builtBarGraph builtGraph = new builtBarGraph(id_counter, graph.xAxisLabel(), graph.yAxisLabel(), BuildGraph.parseCategories(graph), magnitude, graph.title(), BuildGraph.divideGraph(magnitude), xAxisMagnitude);
+        builtBarGraph builtGraph = new builtBarGraph(id_counter, graph.xAxisLabel(), graph.yAxisLabel(),
+                BuildGraph.parseCategories(graph), magnitude, graph.title(), BuildGraph.divideGraph(magnitude),
+                xAxisMagnitude);
         System.out.println(builtGraph.id());
         graphs.add(builtGraph);
 
