@@ -1,6 +1,7 @@
 package com.graphbuilder.graphbuilder;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,44 +15,34 @@ import org.springframework.web.bind.annotation.RestController;
 public class GBcontroller {
 
     int id_counter = 0;
-    ArrayList<builtBarGraph> graphs = new ArrayList<>();
+    HashMap<Integer, builtBarGraph> graphs = new HashMap<>();
 
     @GetMapping(value = "/graphs/{graphID}")
     public builtBarGraph getGraph(@PathVariable String graphID) {
         int intGraphID = Integer.parseInt(graphID);
 
-        for (builtBarGraph graph : graphs) {
-            System.out.println(graph.id());
-            System.out.println("Amount of graphs: " + graphs.size());
-            if (intGraphID == graph.id()) {
-                return graph;
-            }
+        builtBarGraph returnableGraph = graphs.get(intGraphID);
+        if (returnableGraph != null) {
+            return returnableGraph;
+        } else {
+            System.out.println("Could not find graph");
+            return null;
         }
 
-        System.out.println("Could not find graph");
-        return null;
     }
 
     @DeleteMapping(value = "/graphs/{graphID}")
     public ResponseEntity<Object> deleteGraph(@PathVariable String graphID) {
 
         int intGraphID = Integer.parseInt(graphID);
-        builtBarGraph graphToDelete = null;
-        for (builtBarGraph graph : graphs) {
-            System.out.println(graph.id());
-            System.out.println("Amount of graphs: " + graphs.size());
-            if (intGraphID == graph.id()) {
-                graphToDelete = graph;
-                break;
-            }
-        }
+        builtBarGraph graphToDelete = graphs.get(intGraphID);
         if (graphToDelete != null) {
-            graphs.remove(graphToDelete);
+            graphs.remove(intGraphID);
             return ResponseEntity.ok().body("Graph deleted");
         } else {
+            System.out.println("Could not find graph");
             return ResponseEntity.ok().body("Graph not found");
         }
-
     }
 
     @PostMapping("/graphs")
@@ -66,7 +57,7 @@ public class GBcontroller {
                 BuildGraph.parseCategories(graph), magnitude, graph.title(), BuildGraph.divideGraph(magnitude),
                 xAxisMagnitude);
         System.out.println(builtGraph.id());
-        graphs.add(builtGraph);
+        graphs.put(builtGraph.id(), builtGraph);
 
         return ResponseEntity.ok().body("Graph created with ID of " + id_counter);
     }
