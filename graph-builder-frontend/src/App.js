@@ -4,6 +4,7 @@ import api from "axios";
 import GraphOptions from "./GraphOptions";
 import GraphStructure from "./GraphStructure";
 import RetrieveAndDelete from "./RetrieveAndDelete";
+import Navbar from "./Navbar";
 
 function App() {
   const [getGraphID, setGetGraphID] = useState();
@@ -146,9 +147,7 @@ function App() {
 
   return (
     <div>
-      <header>
-        <h1>GRAPH BUILDER</h1>
-      </header>
+      <Navbar />
       <GraphStructure
         currentGraph={currentGraph}
         setCurrentGraph={setCurrentGraph}
