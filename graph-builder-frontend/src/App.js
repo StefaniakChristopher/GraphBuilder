@@ -77,32 +77,12 @@ function App() {
     try {
       console.log(getGraphID);
       const { data } = await api.get(host + "/graphs/" + getGraphID);
-      if (data === null) {
+      if (!data) {
         setCurrentMessage("Graph not found");
       } else {
-        const {
-          id,
-          categories,
-          magnitude,
-          xAxisMagnitude,
-          yAxisIncrements,
-          title,
-          yAxisLabel,
-          xAxisLabel,
-        } = data;
-        const newIncommingGraph = {
-          id,
-          categories,
-          magnitude,
-          xAxisMagnitude,
-          yAxisIncrements,
-          title,
-          yAxisLabel,
-          xAxisLabel,
-        };
-        console.log(newIncommingGraph);
+        console.log(data);
 
-        setCurrentGraph(newIncommingGraph);
+        setCurrentGraph(data);
       }
     } catch (err) {
       console.log(err.response.data);
