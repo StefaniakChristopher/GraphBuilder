@@ -9,7 +9,7 @@ const Graphs = () => {
     <div className=" text-white flex items-center justify-center align-middle">
       <button
         className=" [border-color:var(--font-secondary)] p-2 px-8 rounded-lg border-2 hover:bg-zinc-700 duration-300"
-        onClick={() => setOpenSavedGraphs(!openSavedGraphs)}
+        onClick={() => setOpenSavedGraphs(true)}
       >
         Saved Graphs
       </button>

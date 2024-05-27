@@ -6,6 +6,7 @@ import GraphStructure from "./components/GraphStructure";
 import RetrieveAndDelete from "./components/RetrieveAndDelete";
 import Navbar from "./components/Navbar";
 import Graphs from "./components/Graphs";
+import { host } from "./host";
 
 function App() {
   const [getGraphID, setGetGraphID] = useState();
@@ -30,8 +31,6 @@ function App() {
     yAxisLabel: "Y axis Label",
     xAxisLabel: "X axis Label",
   });
-
-  const host = "http://localhost:8080";
 
   const magnitudeChecker = (xAxisMagnitude) => {
     let digitCounter = 0;

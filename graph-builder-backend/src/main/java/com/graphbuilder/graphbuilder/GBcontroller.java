@@ -17,6 +17,11 @@ public class GBcontroller {
     int id_counter = 0;
     HashMap<Integer, builtBarGraph> graphs = new HashMap<>();
 
+    @GetMapping(value = "/allgraphs")
+    public HashMap<Integer, builtBarGraph> getAllGraphs() {
+        return graphs;
+    }
+
     @GetMapping(value = "/graphs/{graphID}")
     public builtBarGraph getGraph(@PathVariable String graphID) {
         int intGraphID = Integer.parseInt(graphID);

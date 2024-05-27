@@ -1,15 +1,28 @@
 import React from "react";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import {
   hideScrollbar,
   compensateForScrollbar,
   showScrollbar,
 } from "../scrollBarManagement";
-import GraphsModalContent from "./GraphsModalContent";
+import { RxCross1 } from "react-icons/rx";
+import { HiMiniMagnifyingGlass } from "react-icons/hi2";
+import { FaRegTrashAlt } from "react-icons/fa";
+import axios from "axios";
 
 const GraphsModal = ({ setOpenSavedGraphs }) => {
   const modalRef = useRef();
   const overlayRef = useRef();
+
+  const [graphs, setGraphs] = useState(null);
+
+  useEffect(() => {
+    const fetchGraphs = async () => {
+      const result = await axios("https://api.example.com");
+    };
+
+    fetchGraphs();
+  }, []);
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -42,7 +55,33 @@ const GraphsModal = ({ setOpenSavedGraphs }) => {
         onClick={() => setOpenSavedGraphs(false)}
       ></div>
       <div className="fixed [background-color:] p-7 rounded-md z-[2]">
-        <GraphsModalContent />
+        <div className="w-[800px] h-[600px] [background-color:var(--font-primary)]">
+          <nav className="flex justify-between items-center align-middle p-5">
+            <h2 className=" text-xl font-bold">Graphs</h2>
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Search Graphs"
+                className="p-2 pr-10 rounded-lg w-[300px] border-2 border-gray-300 text-black"
+              ></input>
+              <HiMiniMagnifyingGlass className="absolute right-2 top-3 text-black text-xl" />
+            </div>
+            <button onClick={() => setOpenSavedGraphs(false)}>
+              <RxCross1 />
+            </button>
+          </nav>
+          <div className="flex justify-center">
+            <hr className="w-[700px] mt-3 mb-6"></hr>
+          </div>
+          <div className="flex justify-center align-middle items-center">
+            <div className="flex border-white border-2 p-2 w-[750px] justify-between items-center">
+              <h3 className="text-lg font-bold">Graph 1</h3>
+              <span>1-21-2024</span>
+              <span>1:09 P.M.</span>
+              <FaRegTrashAlt className=" text-lg" />
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
