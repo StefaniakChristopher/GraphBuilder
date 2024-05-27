@@ -15,8 +15,8 @@ spec:
         app: gb-backend
     spec:
       containers:
-        - name: gb-backend
-          image: chrisstefaniak/gb-backend:latest
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 8080
+      - name: gb-backend
+        image: chrisstefaniak/gb-backend:latest
+        imagePullPolicy: Always 
+        ports:
+        - containerPort: 8080
