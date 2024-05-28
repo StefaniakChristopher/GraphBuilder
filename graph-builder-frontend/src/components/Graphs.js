@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import GraphsModal from "./GraphsModal";
 
-const Graphs = () => {
+const Graphs = ({ setCurrentGraph }) => {
   const [openSavedGraphs, setOpenSavedGraphs] = useState(false);
 
   return (
@@ -14,7 +14,10 @@ const Graphs = () => {
         Saved Graphs
       </button>
       {openSavedGraphs && (
-        <GraphsModal setOpenSavedGraphs={setOpenSavedGraphs} />
+        <GraphsModal
+          setCurrentGraph={setCurrentGraph}
+          setOpenSavedGraphs={setOpenSavedGraphs}
+        />
       )}
     </div>
   );

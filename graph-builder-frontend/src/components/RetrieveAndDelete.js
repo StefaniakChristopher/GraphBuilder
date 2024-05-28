@@ -1,7 +1,6 @@
 import React from "react";
 
 const RetrieveAndDelete = ({
-  fetchGraph,
   setGetGraphID,
   getGraphID,
   deleteGraph,
@@ -11,17 +10,6 @@ const RetrieveAndDelete = ({
 }) => {
   return (
     <div>
-      <label htmlFor="fetchGraph">Retrieve Graph: </label>
-      <input
-        id="fetchGraph"
-        type="number"
-        value={getGraphID}
-        onChange={(e) => setGetGraphID(e.target.value)}
-      ></input>
-      <button type="submit" onClick={() => fetchGraph(getGraphID)}>
-        Submit
-      </button>
-
       <label htmlFor="deleteGraph"> Delete Graph: </label>
       <input
         id="deleteGraph"

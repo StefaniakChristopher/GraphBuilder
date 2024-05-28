@@ -74,24 +74,6 @@ function App() {
     return 1;
   };
 
-  const fetchGraph = async (getGraphID) => {
-    try {
-      console.log(getGraphID);
-      const { data } = await api.get(host + "/graphs/" + getGraphID);
-      if (!data) {
-        setCurrentMessage("Graph not found");
-      } else {
-        console.log(data);
-
-        setCurrentGraph(data);
-      }
-    } catch (err) {
-      console.log(err.response.data);
-      console.log(err.response.status);
-      console.log(err.response.headers);
-    }
-  };
-
   const postGraph = async (newGraph) => {
     try {
       if (
@@ -153,9 +135,8 @@ function App() {
         setCurrentGraph={setCurrentGraph}
         setCurrentMessage={setCurrentMessage}
       />
-      <Graphs />
+      <Graphs setCurrentGraph={setCurrentGraph} />
       <RetrieveAndDelete
-        fetchGraph={fetchGraph}
         getGraphID={getGraphID}
         setGetGraphID={setGetGraphID}
         deleteGraph={deleteGraph}
