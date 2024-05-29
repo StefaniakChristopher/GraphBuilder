@@ -17,6 +17,7 @@ const GraphsModal = ({ setOpenSavedGraphs, setCurrentGraph }) => {
   const overlayRef = useRef();
 
   const [graphs, setGraphs] = useState([]);
+  const [searchText, setSearchText] = useState("");
 
   const fetchGraphs = async () => {
     const { data } = await axios(`${host}/allgraphs`);
@@ -88,7 +89,8 @@ const GraphsModal = ({ setOpenSavedGraphs, setCurrentGraph }) => {
                 type="text"
                 placeholder="Search Graphs"
                 className="p-2 pr-10 rounded-lg w-[300px] border-2 border-gray-300 text-black"
-              ></input>
+                onChange={(e) => setSearchText(e.target.value)}
+              />
               <HiMiniMagnifyingGlass className="absolute right-2 top-3 text-black text-xl" />
             </div>
             <button onClick={() => setOpenSavedGraphs(false)}>
@@ -100,27 +102,31 @@ const GraphsModal = ({ setOpenSavedGraphs, setCurrentGraph }) => {
           </div>
           <div className="flex justify-center align-middle items-center flex-col">
             {graphs.length > 0 ? (
-              graphs.map(([arraypos, graph]) => (
-                <div
-                  key={arraypos}
-                  className="flex border-white border-2 p-2 w-[750px] mb-4 justify-between items-center "
-                >
-                  <h3 className="text-lg font-bold">{graph.title}</h3>
-                  <span>{graph.date}</span>
-                  <span>{graph.time}</span>
-                  <div className="flex items-center">
-                    <button onClick={() => displayGraph(graph)}>
-                      <GrDocumentTransfer className=" text-lg hover:text-red-700 duration-300" />
-                    </button>
-                    <button
-                      className=" ml-6"
-                      onClick={() => deleteGraph(graph)}
-                    >
-                      <FaRegTrashAlt className=" text-lg hover:text-red-700 duration-300" />
-                    </button>
+              graphs
+                .filter(([_, graph]) =>
+                  graph.title.toLowerCase().includes(searchText.toLowerCase())
+                )
+                .map(([index, graph]) => (
+                  <div
+                    key={index}
+                    className="flex border-white border-2 p-2 w-[750px] mb-4 justify-between items-center "
+                  >
+                    <h3 className="text-lg font-bold">{graph.title}</h3>
+                    <span>{graph.date}</span>
+                    <span>{graph.time}</span>
+                    <div className="flex items-center">
+                      <button onClick={() => displayGraph(graph)}>
+                        <GrDocumentTransfer className=" text-lg hover:text-red-700 duration-300" />
+                      </button>
+                      <button
+                        className=" ml-6"
+                        onClick={() => deleteGraph(graph)}
+                      >
+                        <FaRegTrashAlt className=" text-lg hover:text-red-700 duration-300" />
+                      </button>
+                    </div>
                   </div>
-                </div>
-              ))
+                ))
             ) : (
               <div className=" text-2xl font-bold">No Graphs Available</div>
             )}
