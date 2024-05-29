@@ -10,12 +10,34 @@ import { HiMiniMagnifyingGlass } from "react-icons/hi2";
 import { FaRegTrashAlt } from "react-icons/fa";
 import axios from "axios";
 import { host } from "../host";
+import { GrDocumentTransfer } from "react-icons/gr";
 
 const GraphsModal = ({ setOpenSavedGraphs, setCurrentGraph }) => {
   const modalRef = useRef();
   const overlayRef = useRef();
 
   const [graphs, setGraphs] = useState([]);
+
+  const fetchGraphs = async () => {
+    const { data } = await axios(`${host}/allgraphs`);
+
+    const entries = Object.entries(data);
+    console.log(entries);
+    setGraphs(entries);
+  };
+
+  const deleteGraph = async (graph) => {
+    try {
+      const response = await axios.delete(host + "/graphs/" + graph.id);
+      if (response.status === 200) {
+        setGraphs(graphs.filter(([arrPos, g]) => g !== graph));
+      }
+    } catch (err) {
+      console.log(err.response.data);
+      console.log(err.response.status);
+      console.log(err.response.headers);
+    }
+  };
 
   const displayGraph = (graph) => {
     console.log(graph);
@@ -24,14 +46,6 @@ const GraphsModal = ({ setOpenSavedGraphs, setCurrentGraph }) => {
   };
 
   useEffect(() => {
-    const fetchGraphs = async () => {
-      const { data } = await axios(`${host}/allgraphs`);
-
-      const entries = Object.entries(data);
-      console.log(entries);
-      setGraphs(entries);
-    };
-
     fetchGraphs();
   }, []);
 
@@ -85,17 +99,26 @@ const GraphsModal = ({ setOpenSavedGraphs, setCurrentGraph }) => {
             <hr className="w-[700px] mt-3 mb-6"></hr>
           </div>
           <div className="flex justify-center align-middle items-center flex-col">
-            {graphs ? (
+            {graphs.length > 0 ? (
               graphs.map(([arraypos, graph]) => (
                 <div
                   key={arraypos}
-                  className="flex border-white border-2 p-2 w-[750px] mb-4 justify-between items-center cursor-pointer duration-300 hover:border-red-700"
-                  onClick={() => displayGraph(graph)}
+                  className="flex border-white border-2 p-2 w-[750px] mb-4 justify-between items-center "
                 >
                   <h3 className="text-lg font-bold">{graph.title}</h3>
                   <span>{graph.date}</span>
                   <span>{graph.time}</span>
-                  <FaRegTrashAlt className=" text-lg" />
+                  <div className="flex items-center">
+                    <button onClick={() => displayGraph(graph)}>
+                      <GrDocumentTransfer className=" text-lg hover:text-red-700 duration-300" />
+                    </button>
+                    <button
+                      className=" ml-6"
+                      onClick={() => deleteGraph(graph)}
+                    >
+                      <FaRegTrashAlt className=" text-lg hover:text-red-700 duration-300" />
+                    </button>
+                  </div>
                 </div>
               ))
             ) : (

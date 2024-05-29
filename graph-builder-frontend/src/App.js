@@ -3,7 +3,6 @@ import api from "axios";
 
 import GraphOptions from "./components/GraphOptions";
 import GraphStructure from "./components/GraphStructure";
-import RetrieveAndDelete from "./components/RetrieveAndDelete";
 import Navbar from "./components/Navbar";
 import Graphs from "./components/Graphs";
 import { host } from "./host";
@@ -17,7 +16,6 @@ function App() {
   const [xAxisMagnitude, setXAxisMagnitude] = useState();
   const [newGraph, setNewGraph] = useState();
   const [graphID, setGraphID] = useState(0);
-  const [deleteGraphID, setDeleteGraphID] = useState();
   const [currentMessage, setCurrentMessage] = useState(
     "Welcome to Graph Builder"
   );
@@ -115,18 +113,6 @@ function App() {
     }
   };
 
-  const deleteGraph = async (deleteGraphID) => {
-    try {
-      console.log(deleteGraphID);
-      const response = await api.delete(host + "/graphs/" + deleteGraphID);
-      setCurrentMessage(response.data);
-    } catch (err) {
-      console.log(err.response.data);
-      console.log(err.response.status);
-      console.log(err.response.headers);
-    }
-  };
-
   return (
     <div>
       <Navbar />
@@ -136,15 +122,6 @@ function App() {
         setCurrentMessage={setCurrentMessage}
       />
       <Graphs setCurrentGraph={setCurrentGraph} />
-      <RetrieveAndDelete
-        getGraphID={getGraphID}
-        setGetGraphID={setGetGraphID}
-        deleteGraph={deleteGraph}
-        deleteGraphID={deleteGraphID}
-        setDeleteGraphID={setDeleteGraphID}
-        currentMessage={currentMessage}
-        setCurrentGraph={setCurrentMessage}
-      />
       <GraphOptions
         graphTitle={graphTitle}
         setGraphTitle={setGraphTitle}
