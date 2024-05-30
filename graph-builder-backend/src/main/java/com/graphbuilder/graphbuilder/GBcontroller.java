@@ -54,14 +54,17 @@ public class GBcontroller {
     public ResponseEntity<Object> recieveGraph(@RequestBody Graph graph) {
         id_counter += 1;
 
-        ArrayList<Long> xAxisMagnitude = BuildGraph.parseXAxisMagnitude(graph);
+        ArrayList<Long> xAxisValuesRounded = BuildGraph.roundXAxisValues(graph); // round off decimal values
 
-        long magnitude = BuildGraph.calcMagnitude(xAxisMagnitude);
+        long ceilingValue = BuildGraph.calcCeilingValue(xAxisValuesRounded); // to find the highest number in the data
 
-        builtBarGraph builtGraph = new builtBarGraph(id_counter, graph.xAxisLabel(), graph.yAxisLabel(),
-                BuildGraph.parseCategories(graph), magnitude, graph.title(), BuildGraph.divideGraph(magnitude),
-                xAxisMagnitude);
-        System.out.println(builtGraph.id());
+        ArrayList<Long> yAxisValues = BuildGraph.divideGraph(ceilingValue); // divide the graph into 10 parts
+
+        builtBarGraph builtGraph = new builtBarGraph(id_counter, graph.xAxisLabel(),
+                graph.yAxisLabel(),
+                graph.categories(), ceilingValue, graph.title(),
+                yAxisValues, xAxisValuesRounded);
+        System.out.println("Graph created with ID " + builtGraph.id());
         graphs.put(builtGraph.id(), builtGraph);
 
         return ResponseEntity.ok().body("Graph created with ID of " + id_counter);

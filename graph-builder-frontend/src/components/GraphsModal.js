@@ -71,17 +71,21 @@ const GraphsModal = ({ setOpenSavedGraphs, setCurrentGraph }) => {
   }, []);
 
   return (
+    // container for both overlay and modal
     <section
       ref={modalRef}
       className="fixed top-0 left-0 w-full h-full flex justify-center items-center align-middle z-[1] transition-opacity duration-300 opacity-0"
     >
+      {/* Overlay */}
       <div
         ref={overlayRef}
         className=" absolute top-0 left-0 w-full h-full bg-black opacity-50 transition-opacity duration-300 "
         onClick={() => setOpenSavedGraphs(false)}
       ></div>
+      {/* Modal */}
       <div className="fixed [background-color:] p-7 rounded-md z-[2]">
         <div className="w-[800px] h-[600px] [background-color:var(--font-primary)]">
+          {/* top bar of modal */}
           <nav className="flex justify-between items-center align-middle p-5">
             <h2 className=" text-xl font-bold">Graphs</h2>
             <div className="relative">
@@ -97,9 +101,11 @@ const GraphsModal = ({ setOpenSavedGraphs, setCurrentGraph }) => {
               <RxCross1 />
             </button>
           </nav>
+          {/* line */}
           <div className="flex justify-center">
             <hr className="w-[700px] mt-3 mb-6"></hr>
           </div>
+          {/* graphs selection */}
           <div className="flex justify-center align-middle items-center flex-col">
             {graphs.length > 0 ? (
               graphs

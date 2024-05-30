@@ -12,8 +12,8 @@ function App() {
   const [graphTitle, setGraphTitle] = useState();
   const [xAxisLabel, setXAxisLabel] = useState();
   const [yAxisLabel, setYAxisLabel] = useState();
-  const [categories, setCategories] = useState();
-  const [xAxisMagnitude, setXAxisMagnitude] = useState();
+  const [categories, setCategories] = useState([]);
+  const [xAxisValues, setXAxisValues] = useState([]);
   const [newGraph, setNewGraph] = useState();
   const [graphID, setGraphID] = useState(0);
   const [currentMessage, setCurrentMessage] = useState(
@@ -23,21 +23,21 @@ function App() {
     id: 0,
     categories: ["Category 1", "Category 2", "Category 3"],
     magnitude: 30,
-    xAxisMagnitude: [10, 4, 23],
+    xAxisValues: [10, 4, 23],
     yAxisIncrements: [5, 10, 15, 20, 25, 30, 35, 40],
     title: "GRAPH TITLE",
     yAxisLabel: "Y axis Label",
     xAxisLabel: "X axis Label",
   });
 
-  const magnitudeChecker = (xAxisMagnitude) => {
+  const magnitudeChecker = (xAxisValues) => {
     let digitCounter = 0;
     console.log(digitCounter);
-    for (let i = 0; i < xAxisMagnitude.length; i++) {
-      if (typeof xAxisMagnitude[i] === "string") {
+    for (let i = 0; i < xAxisValues.length; i++) {
+      if (typeof xAxisValues[i] === "string") {
         digitCounter += 1;
       }
-      if (xAxisMagnitude[i] === ",") {
+      if (xAxisValues[i] === ",") {
         digitCounter = 0;
       }
 
@@ -45,7 +45,7 @@ function App() {
         return 0;
       }
       console.log(digitCounter);
-      console.log(typeof xAxisMagnitude[i]);
+      console.log(typeof xAxisValues[i]);
     }
 
     return 1;
@@ -74,14 +74,9 @@ function App() {
 
   const postGraph = async (newGraph) => {
     try {
-      if (
-        categories &&
-        xAxisMagnitude &&
-        graphTitle &&
-        xAxisLabel &&
-        yAxisLabel
-      ) {
-        if (magnitudeChecker(xAxisMagnitude)) {
+      console.log(newGraph);
+      if (categories && xAxisValues && graphTitle && xAxisLabel && yAxisLabel) {
+        if (magnitudeChecker(xAxisValues)) {
           if (categoryChecker(categories)) {
             console.log(newGraph);
             const response = await api.post(host + "/graphs", newGraph);
@@ -96,7 +91,7 @@ function App() {
         }
       } else if (
         categories ||
-        xAxisMagnitude ||
+        xAxisValues ||
         graphTitle ||
         xAxisLabel ||
         yAxisLabel
@@ -129,8 +124,8 @@ function App() {
         setXAxisLabel={setXAxisLabel}
         yAxisLabel={yAxisLabel}
         setYAxisLabel={setYAxisLabel}
-        xAxisMagnitude={xAxisMagnitude}
-        setXAxisMagnitude={setXAxisMagnitude}
+        xAxisValues={xAxisValues}
+        setXAxisValues={setXAxisValues}
         categories={categories}
         setCategories={setCategories}
         newGraph={newGraph}

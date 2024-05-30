@@ -32,7 +32,7 @@ const GraphStructure = (props) => {
     const { currentGraph, setCurrentMessage } = props;
     const {
       categories,
-      xAxisMagnitude,
+      xAxisValues,
       yAxisIncrements,
       title,
       xAxisLabel,
@@ -42,7 +42,7 @@ const GraphStructure = (props) => {
 
     if (
       categories &&
-      xAxisMagnitude &&
+      xAxisValues &&
       yAxisIncrements &&
       title &&
       xAxisLabel &&
@@ -145,7 +145,7 @@ const GraphStructure = (props) => {
             xAxisFragmentEnd,
             lowerLineVerticalPos,
             20,
-            0 - (xAxisMagnitude[i] / barHeightFactor) * yAxisLength - 3
+            0 - (xAxisValues[i] / barHeightFactor) * yAxisLength - 3
           );
 
           xAxisSmallLabels.fillStyle = "white";
@@ -181,7 +181,7 @@ const GraphStructure = (props) => {
       );
     } else if (
       categories ||
-      xAxisMagnitude ||
+      xAxisValues ||
       yAxisIncrements ||
       title ||
       xAxisLabel ||

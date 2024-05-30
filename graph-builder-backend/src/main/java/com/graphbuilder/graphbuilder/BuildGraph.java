@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public abstract class BuildGraph {
-    public static ArrayList<Long> divideGraph(long magnitude) {
-        long multiple_increment = (magnitude / 10);
+    public static ArrayList<Long> divideGraph(long ceilingValue) {
+        long multiple_increment = (ceilingValue / 10);
         ArrayList<Long> yAxisIncrements = new ArrayList<>();
         long current_multiple = 0;
-        while (current_multiple < magnitude) {
+        while (current_multiple < ceilingValue) {
             current_multiple += multiple_increment;
             yAxisIncrements.add(current_multiple);
         }
@@ -16,30 +16,25 @@ public abstract class BuildGraph {
         return yAxisIncrements;
     }
 
-    public static String[] parseCategories(Graph graph) {
-        String[] categories = graph.categories().split(",");
-        return categories;
+    public static ArrayList<Long> roundXAxisValues(Graph graph) {
+
+        ArrayList<Long> xAxisValuesRounded = new ArrayList<>();
+        for (String amount : graph.xAxisValues()) {
+            xAxisValuesRounded.add(Math.round(Double.parseDouble(amount)));
+        }
+        return xAxisValuesRounded;
     }
 
-    public static ArrayList<Long> parseXAxisMagnitude(Graph graph) {
-        String[] xAxisMagnitudeStringForm = graph.xAxisMagnitude().split(",");
-        ArrayList<Long> xAxisMagnitude = new ArrayList<>();
-        for (String amount : xAxisMagnitudeStringForm) {
-            xAxisMagnitude.add(Math.round(Double.parseDouble(amount)));
+    public static long calcCeilingValue(ArrayList<Long> xAxisValues) {
+        long ceilingValue = Math.round(Collections.max(xAxisValues) * 1.1);
+        while (ceilingValue % 10 != 0) {
+            ceilingValue += 1;
         }
-        return xAxisMagnitude;
-    }
-
-    public static long calcMagnitude(ArrayList<Long> xAxisMagnitude) {
-        long magnitude = Math.round(Collections.max(xAxisMagnitude) * 1.1);
-        while (magnitude % 10 != 0) {
-            magnitude += 1;
-        }
-        return magnitude;
+        return ceilingValue;
     }
 
 }
 
-record builtBarGraph(int id, String xAxisLabel, String yAxisLabel, String[] categories, long magnitude, String title,
-        ArrayList<Long> yAxisIncrements, ArrayList<Long> xAxisMagnitude) {
+record builtBarGraph(int id, String xAxisLabel, String yAxisLabel, String[] categories, long ceilingValue, String title,
+        ArrayList<Long> yAxisIncrements, ArrayList<Long> xAxisValues) {
 }
