@@ -51,8 +51,10 @@ public class GBcontroller {
     }
 
     @PostMapping("/graphs")
-    public ResponseEntity<Object> recieveGraph(@RequestBody Graph graph) {
+    public builtBarGraph recieveGraph(@RequestBody Graph graph) {
         id_counter += 1;
+
+        System.out.println("Recieved graph with ID ");
 
         ArrayList<Long> xAxisValuesRounded = BuildGraph.roundXAxisValues(graph); // round off decimal values
 
@@ -67,6 +69,6 @@ public class GBcontroller {
         System.out.println("Graph created with ID " + builtGraph.id());
         graphs.put(builtGraph.id(), builtGraph);
 
-        return ResponseEntity.ok().body("Graph created with ID of " + id_counter);
+        return builtGraph;
     }
 }

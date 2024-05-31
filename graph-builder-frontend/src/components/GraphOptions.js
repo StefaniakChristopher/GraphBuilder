@@ -1,39 +1,58 @@
-import React, { useEffect } from "react";
-import { useRef, useState } from "react";
+import React from "react";
+import { useState } from "react";
+import { magnitudeChecker, categoryChecker } from "../inputCheck";
+import api from "axios";
+import { host } from "../host";
 
-const GraphOptions = ({
-  graphTitle,
-  setGraphTitle,
-  xAxisLabel,
-  setXAxisLabel,
-  yAxisLabel,
-  setYAxisLabel,
-  xAxisValues,
-  setXAxisValues,
-  categories,
-  setCategories,
-  newGraph,
-  setNewGraph,
-  postGraph,
-}) => {
-  useEffect(() => {
-    setNewGraph({
-      title: graphTitle,
-      xAxisLabel: xAxisLabel,
-      yAxisLabel: yAxisLabel,
-      categories: categories,
-      xAxisValues: xAxisValues,
-    });
-  }, [
-    graphTitle,
-    xAxisLabel,
-    yAxisLabel,
-    categories,
-    xAxisValues,
-    setNewGraph,
-  ]);
+const GraphOptions = ({ setCurrentGraph }) => {
+  const [newGraph, setNewGraph] = useState({
+    title: null,
+    xAxisLabel: null,
+    yAxisLabel: null,
+    categories: [],
+    xAxisValues: [],
+  });
 
-  const [categoryAmt, setCategoryAmt] = useState(3);
+  const [currentMessage, setCurrentMessage] = useState("");
+
+  const postGraph = async (newGraph) => {
+    try {
+      const { title, xAxisLabel, yAxisLabel, categories, xAxisValues } =
+        newGraph;
+      if (categories && xAxisValues && title && xAxisLabel && yAxisLabel) {
+        console.log("cat");
+        if (magnitudeChecker(xAxisValues)) {
+          if (categoryChecker(categories)) {
+            const builtGraph = await api.post(host + "/graphs", newGraph);
+            setCurrentGraph(builtGraph.data);
+          } else {
+            setCurrentMessage(
+              "Individual categories must be lower than 40 characters"
+            );
+          }
+        } else {
+          setCurrentMessage("Magnitudes must be lower than 6 digits");
+        }
+      } else if (
+        categories ||
+        xAxisValues ||
+        title ||
+        xAxisLabel ||
+        yAxisLabel
+      ) {
+        setCurrentMessage("Graph is incomplete, please finish the graph");
+      } else {
+        setCurrentMessage("Please fill out the given paramters");
+      }
+    } catch (err) {
+      console.log(err);
+      console.log(err.response.data);
+      console.log(err.response.status);
+      console.log(err.response.headers);
+    }
+  };
+
+  const [categoryAmt, setCategoryAmt] = useState(2);
 
   const createCategories = () => {
     let categoryArr = [];
@@ -45,9 +64,13 @@ const GraphOptions = ({
             placeholder={`Category ${i + 1}`}
             className="p-4 rounded-lg w-[600px] text-lg"
             onChange={(e) => {
-              let newCategories = [...categories];
+              let newCategories = [...newGraph.categories];
+
               newCategories[i] = e.target.value;
-              setCategories(newCategories);
+              setNewGraph((prevState) => ({
+                ...prevState,
+                categories: newCategories,
+              }));
             }}
           />
           <input
@@ -55,9 +78,13 @@ const GraphOptions = ({
             placeholder={`Value ${i + 1}`}
             className="p-4 rounded-lg w-[600px] text-lg"
             onChange={(e) => {
-              let newValues = [...xAxisValues];
+              let newValues = [...newGraph.xAxisValues];
+
               newValues[i] = e.target.value;
-              setXAxisValues(newValues);
+              setNewGraph((prevState) => ({
+                ...prevState,
+                xAxisValues: newValues,
+              }));
             }}
           />
         </div>
@@ -73,8 +100,12 @@ const GraphOptions = ({
         <input
           id="graphTitle"
           type="text"
-          value={graphTitle}
-          onChange={(e) => setGraphTitle(e.target.value)}
+          onChange={(e) =>
+            setNewGraph((prevState) => ({
+              ...prevState,
+              title: e.target.value,
+            }))
+          }
           placeholder="Enter Graph Title"
           className="p-2 rounded-lg w-[200px]"
         />
@@ -85,7 +116,10 @@ const GraphOptions = ({
           placeholder="Categories Label"
           className="p-2 rounded-lg w-[250px]"
           onChange={(e) => {
-            setXAxisLabel(e.target.value);
+            setNewGraph((prevState) => ({
+              ...prevState,
+              xAxisLabel: e.target.value,
+            }));
           }}
         />
         <input
@@ -93,7 +127,10 @@ const GraphOptions = ({
           placeholder="Values Label"
           className="p-2 rounded-lg w-[250px]"
           onChange={(e) => {
-            setYAxisLabel(e.target.value);
+            setNewGraph((prevState) => ({
+              ...prevState,
+              yAxisLabel: e.target.value,
+            }));
           }}
         />
       </div>
@@ -122,57 +159,6 @@ const GraphOptions = ({
           </button>
         )}
       </div>
-
-      {/* <br></br>
-      <div style={{ display: "inline-block" }}>
-        <label htmlFor="xAxisLabel">X-Axis Label: </label>
-        <input
-          id="xAxisLabel"
-          type="text"
-          value={xAxisLabel}
-          onChange={(e) => setXAxisLabel(e.target.value)}
-        ></input>
-      </div>
-
-      <div style={{ display: "inline-block" }}>
-        <label htmlFor="yAxisLabel">Y-Axis Label: </label>
-        <input
-          id="yAxisLabel"
-          type="text"
-          value={yAxisLabel}
-          onChange={(e) => setYAxisLabel(e.target.value)}
-        ></input>
-      </div>
-      <div style={{ display: "inline-block" }}>
-        <label htmlFor="categories">Categories (comma-seprated): </label>
-        <textarea
-          wrap="soft"
-          spellCheck="false"
-          id="categories"
-          type="text"
-          rows="5"
-          cols="30"
-          value={categories}
-          onChange={(e) => setCategories(e.target.value)}
-        ></textarea>
-      </div>
-      <div style={{ display: "inline-block" }}>
-        <label htmlFor="xAxisValues">
-          Magnitudes for those Categories (comma-seprated):{" "}
-        </label>
-        <textarea
-          spellCheck="false"
-          id="xAxisValues"
-          type="text"
-          rows="5"
-          cols="30"
-          value={xAxisValues}
-          onChange={(e) => setXAxisValues(e.target.value)}
-        ></textarea>
-        <button type="submit" onClick={() => postGraph(newGraph)}>
-          Create Graph
-        </button>
-      </div> */}
     </div>
   );
 };
