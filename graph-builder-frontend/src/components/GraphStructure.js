@@ -7,7 +7,7 @@ const getRandomColor = () => {
   return colors[choice];
 };
 
-const GraphStructure = (props) => {
+const GraphStructure = ({ currentGraph, setCurrentMessage }) => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -16,7 +16,7 @@ const GraphStructure = (props) => {
     return () => {
       window.removeEventListener("resize", updateCanvas);
     };
-  }, [props.currentGraph]);
+  }, [currentGraph]);
 
   function findMaxNumber(arr) {
     let maxNumber = arr[0];
@@ -29,7 +29,6 @@ const GraphStructure = (props) => {
   }
 
   const updateCanvas = () => {
-    const { currentGraph, setCurrentMessage } = props;
     const {
       categories,
       xAxisValues,
