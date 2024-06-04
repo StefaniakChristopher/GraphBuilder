@@ -1,15 +1,12 @@
 import React from "react";
 import GraphOptions from "./GraphOptions";
-import GraphStructure from "./GraphStructure";
+import GraphItself from "./GraphItself";
 
 const BuildGraph = ({ currentGraph, setCurrentGraph }) => {
   return (
     <div className="flex items-start">
       <GraphOptions setCurrentGraph={setCurrentGraph} />
-      <GraphStructure
-        currentGraph={currentGraph}
-        setCurrentGraph={setCurrentGraph}
-      />
+      <GraphItself currentGraph={currentGraph} />
     </div>
   );
 };

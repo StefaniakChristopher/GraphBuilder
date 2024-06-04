@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import GraphOptions from "./components/GraphOptions";
-import GraphStructure from "./components/GraphStructure";
 import Navbar from "./components/Navbar";
-import Graphs from "./components/Graphs";
 import BuildGraph from "./components/BuildGraph";
 
 function App() {
