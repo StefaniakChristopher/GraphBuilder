@@ -145,7 +145,7 @@ const GraphOptions = ({ setCurrentGraph }) => {
           }}
         />
         {/* graph type */}
-        <div className="mt-2">
+        <div className="mt-2 flex flex-col">
           <label className=" text-white">Select Graph Type: </label>
           <select className="p-2 rounded-lg w-[350px] mt-1">
             <option value="bar">Bar</option>
@@ -187,7 +187,7 @@ const GraphOptions = ({ setCurrentGraph }) => {
         )}
       </div>
       {/* error message */}
-      <div className="mt-4">
+      <div className="mt-4 flex justify-center items-center">
         <p className="text-red-600 text-lg">{currentMessage}</p>
       </div>
     </div>

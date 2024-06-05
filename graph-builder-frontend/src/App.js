@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import Navbar from "./components/Navbar";
 import BuildGraph from "./components/BuildGraph";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import HomePage from "./components/HomePage";
+import AboutPage from "./components/AboutPage";
+import ContactPage from "./components/ContactPage";
 
 function App() {
   const [currentGraph, setCurrentGraph] = useState({
@@ -15,14 +19,23 @@ function App() {
   });
 
   return (
-    <div className="h-full">
+    <Router className="h-full">
       <Navbar />
-      <BuildGraph
-        currentGraph={currentGraph}
-        setCurrentGraph={setCurrentGraph}
-      />
-      {/* <Graphs setCurrentGraph={setCurrentGraph} /> */}
-    </div>
+      <Routes>
+        <Route path="/" element={HomePage} />
+        <Route path="/about" element={AboutPage} />
+        <Route path="/contact" element={ContactPage} />
+        <Route
+          path="/creategraph"
+          element={
+            <BuildGraph
+              currentGraph={currentGraph}
+              setCurrentGraph={setCurrentGraph}
+            />
+          }
+        />
+      </Routes>
+    </Router>
   );
 }
 

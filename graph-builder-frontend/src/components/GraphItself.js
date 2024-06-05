@@ -10,13 +10,9 @@ import {
   Legend,
   plugins,
 } from "chart.js";
+import { bgColorSecondary } from "../colorPalette";
 
 const GraphItself = ({ currentGraph }) => {
-  const computedStyle = getComputedStyle(document.documentElement);
-  const bgColorSecondary = computedStyle
-    .getPropertyValue("--bg-secondary")
-    .trim();
-
   const { categories, xAxisValues, title, yAxisLabel, xAxisLabel } =
     currentGraph;
 

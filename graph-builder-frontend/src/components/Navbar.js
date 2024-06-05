@@ -1,42 +1,58 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <nav className="[background-color:var(--bg-secondary)] justify-between align-middle items-center flex [color:var(--font-secondary)]">
       <div>
-        <h1 className="p-4 ml-4 font-extrabold text-2xl">Graph Builder</h1>
+        <h1 className="p-4 ml-4 font-extrabold text-2xl">Graph Crafter</h1>
       </div>
 
       <ul className="flex gap-16 text-xl font-bold">
         <li>
-          <a className=" hover:text-cyan-600 cursor-pointer duration-300">
+          <Link
+            to="/"
+            className=" hover:text-cyan-600 cursor-pointer duration-300"
+          >
             Home
-          </a>
+          </Link>
         </li>
         <li>
-          <a className=" hover:text-cyan-600 cursor-pointer duration-300">
+          <Link
+            to="/creategraph"
+            className=" hover:text-cyan-600 cursor-pointer duration-300"
+          >
             Create Graph
-          </a>
+          </Link>
         </li>
         <li>
-          <a className=" hover:text-cyan-600 cursor-pointer duration-300">
+          <Link
+            to="/savedgraphs"
+            className=" hover:text-cyan-600 cursor-pointer duration-300"
+          >
             My Graphs
-          </a>
+          </Link>
         </li>
         {/* <li>
-          <a className=" hover:text-cyan-600 cursor-pointer duration-300">
+          <Link className=" hover:text-cyan-600 cursor-pointer duration-300">
             Templates
-          </a>
+          </Link>
         </li> mayiyyyyyyyyyybe later*/}
         <li>
-          <a className=" hover:text-cyan-600 cursor-pointer duration-300">
+          <Link
+            to="/about"
+            className=" hover:text-cyan-600 cursor-pointer duration-300"
+          >
             About
-          </a>
+          </Link>
         </li>
         <li>
-          <a className=" hover:text-cyan-600 cursor-pointer duration-300">
+          <Link
+            to="/contact"
+            className=" hover:text-cyan-600 cursor-pointer duration-300"
+          >
             Contact Us
-          </a>
+          </Link>
         </li>
       </ul>
 
