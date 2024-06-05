@@ -3,6 +3,8 @@ import { useState } from "react";
 import { magnitudeChecker, categoryChecker } from "../inputCheck";
 import api from "axios";
 import { host } from "../host";
+import { CiCirclePlus } from "react-icons/ci";
+import { CiCircleMinus } from "react-icons/ci";
 
 const GraphOptions = ({ setCurrentGraph }) => {
   const [newGraph, setNewGraph] = useState({
@@ -16,11 +18,11 @@ const GraphOptions = ({ setCurrentGraph }) => {
   const [currentMessage, setCurrentMessage] = useState("");
 
   const postGraph = async (newGraph) => {
+    setCurrentMessage("");
     try {
       const { title, xAxisLabel, yAxisLabel, categories, xAxisValues } =
         newGraph;
       if (categories && xAxisValues && title && xAxisLabel && yAxisLabel) {
-        console.log("cat");
         if (magnitudeChecker(xAxisValues)) {
           if (categoryChecker(categories)) {
             const builtGraph = await api.post(host + "/graphs", newGraph);
@@ -40,7 +42,7 @@ const GraphOptions = ({ setCurrentGraph }) => {
         xAxisLabel ||
         yAxisLabel
       ) {
-        setCurrentMessage("Graph is incomplete, please finish the graph");
+        setCurrentMessage("Input is incomplete, please finish the input");
       } else {
         setCurrentMessage("Please fill out the given paramters");
       }
@@ -58,11 +60,12 @@ const GraphOptions = ({ setCurrentGraph }) => {
     let categoryArr = [];
     for (let i = 0; i <= categoryAmt; i++) {
       categoryArr.push(
+        // dyanmic category input
         <div key={i} className=" flex gap-4 mb-4">
           <input
             type="text"
             placeholder={`Category ${i + 1}`}
-            className="p-4 rounded-lg w-[450px] text-lg"
+            className="p-4 rounded-lg w-[165px] text-lg"
             onChange={(e) => {
               let newCategories = [...newGraph.categories];
 
@@ -73,10 +76,11 @@ const GraphOptions = ({ setCurrentGraph }) => {
               }));
             }}
           />
+          {/* dynamic number input */}
           <input
             type="number"
             placeholder={`Value ${i + 1}`}
-            className="p-4 rounded-lg w-[450px] text-lg"
+            className="p-4 rounded-lg w-[165px] text-lg"
             onChange={(e) => {
               let newValues = [...newGraph.xAxisValues];
 
@@ -94,16 +98,16 @@ const GraphOptions = ({ setCurrentGraph }) => {
   };
 
   return (
-    <div className="p-10">
-      <div className=" flex flex-col align-middle">
-        <label
-          className="text-white text-3xl mb-3 font-bold"
-          htmlFor="graphTitle"
-        >
+    <div className="p-10 w-1/5">
+      {/* header */}
+      <div className=" flex items-center justify-center align-middle">
+        <label className="text-white text-3xl font-bold" htmlFor="graphTitle">
           Create Graph
         </label>
       </div>
-      <div className="flex gap-4 mt-4">
+      <hr className="my-6"></hr>
+      {/* graph title input */}
+      <div className="mt-4">
         <input
           id="graphTitle"
           type="text"
@@ -114,12 +118,13 @@ const GraphOptions = ({ setCurrentGraph }) => {
             }))
           }
           placeholder="Enter Graph Title"
-          className="p-2 rounded-lg w-[250px]"
+          className="p-2 mb-3 rounded-lg w-[350px]"
         />
+        {/* label for categories */}
         <input
           type="text"
           placeholder="Categories Label"
-          className="p-2 rounded-lg w-[250px]"
+          className="p-2 rounded-lg mb-3 w-[350px]"
           onChange={(e) => {
             setNewGraph((prevState) => ({
               ...prevState,
@@ -127,10 +132,11 @@ const GraphOptions = ({ setCurrentGraph }) => {
             }));
           }}
         />
+        {/* label for values */}
         <input
           type="text"
           placeholder="Values Label"
-          className="p-2 rounded-lg w-[250px]"
+          className="p-2 rounded-lg w-[350px] mb-3"
           onChange={(e) => {
             setNewGraph((prevState) => ({
               ...prevState,
@@ -138,31 +144,51 @@ const GraphOptions = ({ setCurrentGraph }) => {
             }));
           }}
         />
+        {/* graph type */}
+        <div className="mt-2">
+          <label className=" text-white">Select Graph Type: </label>
+          <select className="p-2 rounded-lg w-[350px] mt-1">
+            <option value="bar">Bar</option>
+            <option value="pie">Pie</option>
+          </select>
+        </div>
       </div>
-      <div className="flex items-center align-middle text-white gap-4 my-4">
+      {/* entry increase/decrease buttons */}
+      <div className="flex items-center align-middle justify-between text-white gap-4 my-4">
         <button
           onClick={() => setCategoryAmt(categoryAmt - 1)}
-          className="w-[450px] bg-blue-600 rounded-lg p-3 hover:bg-blue-500 duration-300"
+          className={`w-[45px] rounded-lg p-2 duration-300 text-2xl flex items-center justify-center align-middle ml-16 ${
+            categoryAmt === 1
+              ? "cursor-disabled bg-slate-500 disabled:"
+              : "bg-blue-600 hover:bg-blue-500"
+          }`}
+          disabled={categoryAmt === 1 ? true : false}
         >
-          Remove Category
+          <CiCircleMinus />
         </button>
         <button
           onClick={() => setCategoryAmt(categoryAmt + 1)}
-          className="w-[450px] bg-blue-600 rounded-lg p-3 hover:bg-blue-500 duration-300"
+          className={`w-[45px] bg-blue-600 rounded-lg p-2 hover:bg-blue-500 duration-300 text-2xl flex items-center justify-center align-middle mr-16`}
         >
-          Add Category
+          <CiCirclePlus />
         </button>
       </div>
+      {/* dynamic entry generation */}
       <div className="flex flex-col">{createCategories()}</div>
-      <div className="flex items-center">
+      {/* create graph button */}
+      <div className="flex items-center justify-center">
         {categoryAmt > 0 && (
           <button
             onClick={() => postGraph(newGraph)}
-            className="bg-blue-600 w-[918px] rounded-lg p-4 text-3xl font-extrabold text-white  hover:bg-blue-500 duration-300"
+            className="bg-blue-600 w-[250px] rounded-lg p-4 text-2xl font-extrabold text-white  hover:bg-blue-500 duration-300"
           >
             CREATE GRAPH
           </button>
         )}
+      </div>
+      {/* error message */}
+      <div className="mt-4">
+        <p className="text-red-600 text-lg">{currentMessage}</p>
       </div>
     </div>
   );

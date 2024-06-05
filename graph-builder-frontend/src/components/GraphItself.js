@@ -8,10 +8,17 @@ import {
   Title,
   Tooltip,
   Legend,
+  plugins,
 } from "chart.js";
 
 const GraphItself = ({ currentGraph }) => {
-  const { categories, xAxisValues } = currentGraph;
+  const computedStyle = getComputedStyle(document.documentElement);
+  const bgColorSecondary = computedStyle
+    .getPropertyValue("--bg-secondary")
+    .trim();
+
+  const { categories, xAxisValues, title, yAxisLabel, xAxisLabel } =
+    currentGraph;
 
   ChartJS.register(
     CategoryScale,
@@ -23,14 +30,43 @@ const GraphItself = ({ currentGraph }) => {
   );
 
   const options = {
-    responsive: true,
+    maintainAspectRatio: false,
     plugins: {
-      legend: {
-        position: "top",
-      },
       title: {
         display: true,
-        text: "Chart.js Bar Chart",
+        text: title,
+        font: {
+          size: 30,
+        },
+      },
+      legend: {
+        display: false,
+      },
+    },
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: xAxisLabel,
+          font: {
+            size: 20,
+          },
+        },
+        grid: {
+          color: bgColorSecondary,
+        },
+      },
+      y: {
+        title: {
+          display: true,
+          text: yAxisLabel,
+          font: {
+            size: 20,
+          },
+        },
+        grid: {
+          color: bgColorSecondary,
+        },
       },
     },
   };
@@ -39,15 +75,15 @@ const GraphItself = ({ currentGraph }) => {
     labels: categories,
     datasets: [
       {
-        label: "Dataset 1",
-        data: categories.map((_, i) => currentGraph.xAxisValues[i]),
+        label: "",
+        data: categories.map((_, i) => xAxisValues[i]),
         backgroundColor: "rgba(255, 99, 132, 0.5)",
       },
     ],
   };
 
   return (
-    <div className="w-1/2 h-[900px]">
+    <div className="w-4/5 h-[900px] pt-9">
       <Bar options={options} data={data} />
     </div>
   );

@@ -10,12 +10,32 @@ const Navbar = () => {
       <ul className="flex gap-16 text-xl font-bold">
         <li>
           <a className=" hover:text-cyan-600 cursor-pointer duration-300">
-            Bar
+            Home
           </a>
         </li>
         <li>
           <a className=" hover:text-cyan-600 cursor-pointer duration-300">
-            Pie
+            Create Graph
+          </a>
+        </li>
+        <li>
+          <a className=" hover:text-cyan-600 cursor-pointer duration-300">
+            My Graphs
+          </a>
+        </li>
+        {/* <li>
+          <a className=" hover:text-cyan-600 cursor-pointer duration-300">
+            Templates
+          </a>
+        </li> mayiyyyyyyyyyybe later*/}
+        <li>
+          <a className=" hover:text-cyan-600 cursor-pointer duration-300">
+            About
+          </a>
+        </li>
+        <li>
+          <a className=" hover:text-cyan-600 cursor-pointer duration-300">
+            Contact Us
           </a>
         </li>
       </ul>
