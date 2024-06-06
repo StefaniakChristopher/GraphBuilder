@@ -5,6 +5,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import HomePage from "./components/HomePage";
 import AboutPage from "./components/AboutPage";
 import ContactPage from "./components/ContactPage";
+import Footer from "./components/Footer";
 
 function App() {
   const [currentGraph, setCurrentGraph] = useState({
@@ -22,9 +23,9 @@ function App() {
     <Router className="h-full">
       <Navbar />
       <Routes>
-        <Route path="/" element={HomePage} />
-        <Route path="/about" element={AboutPage} />
-        <Route path="/contact" element={ContactPage} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/contact" element={<ContactPage />} />
         <Route
           path="/creategraph"
           element={
@@ -35,6 +36,7 @@ function App() {
           }
         />
       </Routes>
+      <Footer />
     </Router>
   );
 }

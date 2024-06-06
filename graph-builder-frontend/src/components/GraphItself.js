@@ -12,7 +12,7 @@ import {
 } from "chart.js";
 import { bgColorSecondary } from "../colorPalette";
 
-const GraphItself = ({ currentGraph }) => {
+const GraphItself = ({ currentGraph, graphHeight }) => {
   const { categories, xAxisValues, title, yAxisLabel, xAxisLabel } =
     currentGraph;
 
@@ -79,7 +79,10 @@ const GraphItself = ({ currentGraph }) => {
   };
 
   return (
-    <div className="w-4/5 h-[900px] pt-9">
+    <div
+      className="w-4/5 flex flex-col pt-9 mb-20"
+      style={{ height: `${graphHeight}px` }}
+    >
       <Bar options={options} data={data} />
     </div>
   );

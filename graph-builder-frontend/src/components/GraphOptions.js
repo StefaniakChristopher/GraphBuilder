@@ -6,7 +6,7 @@ import { host } from "../host";
 import { CiCirclePlus } from "react-icons/ci";
 import { CiCircleMinus } from "react-icons/ci";
 
-const GraphOptions = ({ setCurrentGraph }) => {
+const GraphOptions = ({ setCurrentGraph, graphHeight, setGraphHeight }) => {
   const [newGraph, setNewGraph] = useState({
     title: null,
     xAxisLabel: null,
@@ -156,7 +156,10 @@ const GraphOptions = ({ setCurrentGraph }) => {
       {/* entry increase/decrease buttons */}
       <div className="flex items-center align-middle justify-between text-white gap-4 my-4">
         <button
-          onClick={() => setCategoryAmt(categoryAmt - 1)}
+          onClick={() => {
+            setCategoryAmt(categoryAmt - 1);
+            setGraphHeight(graphHeight - 70);
+          }}
           className={`w-[45px] rounded-lg p-2 duration-300 text-2xl flex items-center justify-center align-middle ml-16 ${
             categoryAmt === 1
               ? "cursor-disabled bg-slate-500 disabled:"
@@ -167,7 +170,10 @@ const GraphOptions = ({ setCurrentGraph }) => {
           <CiCircleMinus />
         </button>
         <button
-          onClick={() => setCategoryAmt(categoryAmt + 1)}
+          onClick={() => {
+            setCategoryAmt(categoryAmt + 1);
+            setGraphHeight(graphHeight + 70);
+          }}
           className={`w-[45px] bg-blue-600 rounded-lg p-2 hover:bg-blue-500 duration-300 text-2xl flex items-center justify-center align-middle mr-16`}
         >
           <CiCirclePlus />
