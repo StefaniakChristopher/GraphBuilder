@@ -18,3 +18,20 @@ body {
 #root {
   height: 100vh;
 }
+
+/* Custom scrollbar styles */
+.overflow-y-auto::-webkit-scrollbar {
+  width: 8px; /* Adjust the width of the scrollbar */
+}
+
+.overflow-y-auto::-webkit-scrollbar-track {
+  background: #f1f1f1; /* The track (progress bar) of the scrollbar */
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb {
+  background: #888; /* The draggable part of the scrollbar */
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Color when hovering over the scrollbar */
+}

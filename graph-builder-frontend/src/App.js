@@ -6,6 +6,7 @@ import HomePage from "./components/HomePage";
 import AboutPage from "./components/AboutPage";
 import ContactPage from "./components/ContactPage";
 import Footer from "./components/Footer";
+import SavedGraphs from "./components/SavedGraphs";
 
 function App() {
   const [currentGraph, setCurrentGraph] = useState({
@@ -26,6 +27,15 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route
+          path="/savedgraphs"
+          element={
+            <SavedGraphs
+              currentGraph={currentGraph}
+              setCurrentGraph={setCurrentGraph}
+            />
+          }
+        />
         <Route
           path="/creategraph"
           element={
