@@ -12,6 +12,8 @@ import axios from "axios";
 import { host } from "../host";
 import { GrDocumentTransfer } from "react-icons/gr";
 
+// UNUSED COMPONENT
+
 const GraphsModal = ({ setOpenSavedGraphs, setCurrentGraph }) => {
   const modalRef = useRef();
   const overlayRef = useRef();

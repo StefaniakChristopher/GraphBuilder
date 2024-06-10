@@ -4,9 +4,10 @@ import GraphItself from "./GraphItself";
 import { useState } from "react";
 
 const BuildGraph = ({ currentGraph, setCurrentGraph }) => {
-  const [graphHeight, setGraphHeight] = useState(900);
+  const [graphHeight, setGraphHeight] = useState(900); // to make it so there is limited white space
   return (
     <div className="flex items-start">
+      {/* to contain the graph and the input of the graph and set them side by side */}
       <GraphOptions
         setCurrentGraph={setCurrentGraph}
         graphHeight={graphHeight}

@@ -8,6 +8,7 @@ import StepsPicture from "../assets/stepsgraphcrafter.png";
 const HomePage = () => {
   return (
     <>
+      {/* Hero section */}
       <main className="flex flex-col justify-center items-center h-[1000px]">
         <h1 className=" text-9xl font-extrabold [color:var(--font-primary)] mb-4">
           GRAPH CRAFTER
@@ -22,6 +23,7 @@ const HomePage = () => {
           </button>
         </Link>
       </main>
+      {/* features section */}
       <section className="mb-20">
         <hr className=" h-2 mx-[100px] [color:var(--font-secondary)] mb-12"></hr>
         <h2 className="[color:var(--font-primary)] text-6xl ml-8 underline font-bold mb-20">
@@ -54,6 +56,7 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+      {/* How to use section */}
       <section className="mb-20">
         <hr className=" h-2 mx-[100px] [color:var(--font-secondary)] mb-12"></hr>
         <h2 className="[color:var(--font-primary)] text-6xl ml-8 underline font-bold mb-20">
@@ -103,6 +106,7 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+      {/* reviews section */}
       <section className="mb-20">
         <hr className=" h-2 mx-[100px] [color:var(--font-secondary)] mb-12"></hr>
         <h2 className="[color:var(--font-primary)] text-6xl ml-8 underline font-bold mb-20">
@@ -128,6 +132,7 @@ const HomePage = () => {
               - Jack Wellington
             </p>
           </div>
+
           <div className="w-[300px] p-4 border-2">
             <h4 className="[color:var(--font-primary)] text-2xl font-semibold mb-1">
               CHANGED my LIFE

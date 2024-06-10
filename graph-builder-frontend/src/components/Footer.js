@@ -4,7 +4,7 @@ import { FaFacebookF } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
-import Nav from "./Nav";
+import Nav from "./NavLinks";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();

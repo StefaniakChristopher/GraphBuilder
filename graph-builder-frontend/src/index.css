@@ -19,19 +19,19 @@ body {
   height: 100vh;
 }
 
-/* Custom scrollbar styles */
+/* thin scrollbar on the saved graph page */
 .overflow-y-auto::-webkit-scrollbar {
-  width: 8px; /* Adjust the width of the scrollbar */
+  width: 8px;
 }
 
 .overflow-y-auto::-webkit-scrollbar-track {
-  background: #f1f1f1; /* The track (progress bar) of the scrollbar */
+  background: #f1f1f1;
 }
 
 .overflow-y-auto::-webkit-scrollbar-thumb {
-  background: #888; /* The draggable part of the scrollbar */
+  background: #888;
 }
 
 .overflow-y-auto::-webkit-scrollbar-thumb:hover {
-  background: #555; /* Color when hovering over the scrollbar */
+  background: #555;
 }
