@@ -8,8 +8,8 @@
 		<version>3.0.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.graphbuilder</groupId>
-	<artifactId>graph-builder</artifactId>
+	<groupId>com.graphcrafter</groupId>
+	<artifactId>graphs-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>graph-builder</name>
 	<description>Backend for building graphs</description>

@@ -1,4 +1,4 @@
-package com.graphbuilder.graphbuilder;
+package com.graphcrafter.graphs_service;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

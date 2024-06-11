@@ -1,4 +1,4 @@
-package com.graphbuilder.graphbuilder;
+package com.graphcrafter.graphs_service;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,10 +1,10 @@
-package com.graphbuilder.graphbuilder;
+package com.graphcrafter.graphs_service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class GraphBuilderApplicationTests {
+class GraphCrafterApplicationTests {
 
 	@Test
 	void contextLoads() {
