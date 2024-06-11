@@ -1,12 +1,15 @@
 import React from "react";
 
 import Nav from "./NavLinks";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <nav className="[background-color:var(--bg-secondary)] justify-between align-middle items-center flex [color:var(--font-secondary)]">
       <div>
-        <h1 className="p-4 ml-4 font-extrabold text-2xl">Graph Crafter</h1>
+        <h1 className="p-4 ml-4 font-extrabold text-2xl">
+          <Link to="/">Graph Crafter</Link>
+        </h1>
       </div>
       <Nav />
 
