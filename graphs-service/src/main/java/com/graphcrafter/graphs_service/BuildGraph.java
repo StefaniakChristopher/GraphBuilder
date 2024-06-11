@@ -6,14 +6,14 @@ import java.util.Collections;
 public abstract class BuildGraph {
     public static ArrayList<Long> divideGraph(long ceilingValue) {
         long multiple_increment = (ceilingValue / 10);
-        ArrayList<Long> yAxisIncrements = new ArrayList<>();
+        ArrayList<Long> yAxisValues = new ArrayList<>();
         long current_multiple = 0;
         while (current_multiple < ceilingValue) {
             current_multiple += multiple_increment;
-            yAxisIncrements.add(current_multiple);
+            yAxisValues.add(current_multiple);
         }
 
-        return yAxisIncrements;
+        return yAxisValues;
     }
 
     public static ArrayList<Long> roundXAxisValues(Graph graph) {
@@ -36,5 +36,5 @@ public abstract class BuildGraph {
 }
 
 record builtBarGraph(int id, String xAxisLabel, String yAxisLabel, String[] categories, long ceilingValue, String title,
-        ArrayList<Long> yAxisIncrements, ArrayList<Long> xAxisValues) {
+        ArrayList<Long> yAxisValues, ArrayList<Long> xAxisValues) {
 }
