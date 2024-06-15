@@ -13,7 +13,7 @@ import {
 import { bgColorSecondary } from "../colorPalette";
 
 const GraphItself = ({ currentGraph, graphHeight }) => {
-  const { categories, xAxisValues, title, yAxisLabel, xAxisLabel } =
+  const { categories, categoryValues, title, yAxisLabel, xAxisLabel } =
     currentGraph;
 
   ChartJS.register(
@@ -72,7 +72,7 @@ const GraphItself = ({ currentGraph, graphHeight }) => {
     datasets: [
       {
         label: "",
-        data: categories.map((_, i) => xAxisValues[i]),
+        data: categories.map((_, i) => categoryValues[i]),
         backgroundColor: "rgba(255, 99, 132, 0.5)",
       },
     ],

@@ -12,7 +12,7 @@ const GraphOptions = ({ setCurrentGraph, graphHeight, setGraphHeight }) => {
     xAxisLabel: null,
     yAxisLabel: null,
     categories: [],
-    xAxisValues: [],
+    categoryValues: [],
   });
 
   const [currentMessage, setCurrentMessage] = useState("");
@@ -20,10 +20,10 @@ const GraphOptions = ({ setCurrentGraph, graphHeight, setGraphHeight }) => {
   const postGraph = async (newGraph) => {
     setCurrentMessage("");
     try {
-      const { title, xAxisLabel, yAxisLabel, categories, xAxisValues } =
+      const { title, xAxisLabel, yAxisLabel, categories, categoryValues } =
         newGraph;
-      if (categories && xAxisValues && title && xAxisLabel && yAxisLabel) {
-        if (magnitudeChecker(xAxisValues)) {
+      if (categories && categoryValues && title && xAxisLabel && yAxisLabel) {
+        if (magnitudeChecker(categoryValues)) {
           if (categoryChecker(categories)) {
             const builtGraph = await api.post(host + "/graphs", newGraph);
             setCurrentGraph(builtGraph.data);
@@ -37,7 +37,7 @@ const GraphOptions = ({ setCurrentGraph, graphHeight, setGraphHeight }) => {
         }
       } else if (
         categories ||
-        xAxisValues ||
+        categoryValues ||
         title ||
         xAxisLabel ||
         yAxisLabel
@@ -82,12 +82,12 @@ const GraphOptions = ({ setCurrentGraph, graphHeight, setGraphHeight }) => {
             placeholder={`Value ${i + 1}`}
             className="p-4 rounded-lg w-[165px] text-lg"
             onChange={(e) => {
-              let newValues = [...newGraph.xAxisValues];
+              let newValues = [...newGraph.categoryValues];
 
               newValues[i] = e.target.value;
               setNewGraph((prevState) => ({
                 ...prevState,
-                xAxisValues: newValues,
+                categoryValues: newValues,
               }));
             }}
           />

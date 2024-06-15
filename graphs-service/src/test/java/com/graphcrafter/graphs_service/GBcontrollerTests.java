@@ -21,96 +21,9 @@ public class GBcontrollerTests {
         String graphID = "1";
         String falseFalseGraphID = "-2";
 
-        String builtGraphsJSON = "{\n" +
-                        "  \"1\": {\n" +
-                        "    \"id\": 1,\n" +
-                        "    \"xAxisLabel\": \"X Label\",\n" +
-                        "    \"yAxisLabel\": \"Y Label\",\n" +
-                        "    \"categories\": [\n" +
-                        "      \"fdsfds\",\n" +
-                        "      \"fdsf\",\n" +
-                        "      \"fdsfdsf\"\n" +
-                        "    ],\n" +
-                        "    \"ceilingValue\": 20,\n" +
-                        "    \"title\": \"Test Graph\",\n" +
-                        "    \"yAxisValues\": [\n" +
-                        "      2,\n" +
-                        "      4,\n" +
-                        "      6,\n" +
-                        "      8,\n" +
-                        "      10,\n" +
-                        "      12,\n" +
-                        "      14,\n" +
-                        "      16,\n" +
-                        "      18,\n" +
-                        "      20\n" +
-                        "    ],\n" +
-                        "    \"xAxisValues\": [\n" +
-                        "      10,\n" +
-                        "      8,\n" +
-                        "      3\n" +
-                        "    ]\n" +
-                        "  },\n" +
-                        "  \"2\": {\n" +
-                        "    \"id\": 2,\n" +
-                        "    \"xAxisLabel\": \"X Label\",\n" +
-                        "    \"yAxisLabel\": \"Y Label\",\n" +
-                        "    \"categories\": [\n" +
-                        "      \"fdsfds\",\n" +
-                        "      \"fdsf\",\n" +
-                        "      \"fdsfdsf\"\n" +
-                        "    ],\n" +
-                        "    \"ceilingValue\": 20,\n" +
-                        "    \"title\": \"Test Graph\",\n" +
-                        "    \"yAxisValues\": [\n" +
-                        "      2,\n" +
-                        "      4,\n" +
-                        "      6,\n" +
-                        "      8,\n" +
-                        "      10,\n" +
-                        "      12,\n" +
-                        "      14,\n" +
-                        "      16,\n" +
-                        "      18,\n" +
-                        "      20\n" +
-                        "    ],\n" +
-                        "    \"xAxisValues\": [\n" +
-                        "      10,\n" +
-                        "      8,\n" +
-                        "      3\n" +
-                        "    ]\n" +
-                        "  }\n" +
-                        "}";
+        String builtGraphsJSON = "{\"1\":{\"id\":1,\"categories\":[\"fdsfds\",\"fdsf\",\"fdsfdsf\"],\"categoryValues\":[\"10\",\"8.9\",\"3\"],\"title\":\"Test Graph\",\"yaxisLabel\":\"Y Label\",\"xaxisLabel\":\"X Label\"},\"2\":{\"id\":2,\"categories\":[\"fdsfds\",\"fdsf\",\"fdsfdsf\"],\"categoryValues\":[\"10\",\"8.9\",\"3\"],\"title\":\"Test Graph\",\"yaxisLabel\":\"Y Label\",\"xaxisLabel\":\"X Label\"}}";
 
-        String builtGraphJSON = String.format("{"
-                        + "\"id\": %s,"
-                        + "\"xAxisLabel\": \"X Label\","
-                        + "\"yAxisLabel\": \"Y Label\","
-                        + "\"categories\": ["
-                        + "    \"fdsfds\","
-                        + "    \"fdsf\","
-                        + "    \"fdsfdsf\""
-                        + "],"
-                        + "\"ceilingValue\": 20,"
-                        + "\"title\": \"Test Graph\","
-                        + "\"yAxisValues\": ["
-                        + "    2,"
-                        + "    4,"
-                        + "    6,"
-                        + "    8,"
-                        + "    10,"
-                        + "    12,"
-                        + "    14,"
-                        + "    16,"
-                        + "    18,"
-                        + "    20"
-                        + "],"
-                        + "\"xAxisValues\": ["
-                        + "    10,"
-                        + "    8,"
-                        + "    3"
-                        + "]"
-                        + "}", graphID);
+        String builtGraphJSON = "{\"id\":1,\"categories\":[\"fdsfds\",\"fdsf\",\"fdsfdsf\"],\"categoryValues\":[\"10\",\"8.9\",\"3\"],\"title\":\"Test Graph\",\"yaxisLabel\":\"Y Label\",\"xaxisLabel\":\"X Label\"}";
 
         @Autowired
         private MockMvc mockMvc;
@@ -175,7 +88,7 @@ public class GBcontrollerTests {
         private void postGenericGraph() throws Exception {
                 mockMvc.perform(post("/graphs")
                                 .contentType(MediaType.APPLICATION_JSON)
-                                .content("{\"id\":\"0\",\"categories\":[\"fdsfds\",\"fdsf\",\"fdsfdsf\"],\"magnitude\":\"30\", \"xAxisValues\": [\"10\", \"8\", \"3\"],\"title\":\"Test Graph\",\"yAxisLabel\":\"Y Label\", \"xAxisLabel\":\"X Label\"}"))
+                                .content("{\"id\":\"0\",\"categories\":[\"fdsfds\",\"fdsf\",\"fdsfdsf\"], \"categoryValues\": [\"10\", \"8.9\", \"3\"],\"title\":\"Test Graph\",\"yAxisLabel\":\"Y Label\", \"xAxisLabel\":\"X Label\"}"))
                                 .andExpect(status().isOk());
         }
 
