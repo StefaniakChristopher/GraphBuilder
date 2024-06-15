@@ -2,6 +2,7 @@ package com.graphcrafter.graphs_service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,45 +15,46 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class GBcontroller {
 
-    int id_counter = 0;
+    AtomicLong id_counter = new AtomicLong(0);
     HashMap<Integer, builtBarGraph> graphs = new HashMap<>();
 
     @GetMapping(value = "/allgraphs")
-    public HashMap<Integer, builtBarGraph> getAllGraphs() {
-        return graphs;
+    public ResponseEntity<HashMap<Integer, builtBarGraph>> getAllGraphs() {
+        if (graphs.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.ok(graphs);
+        }
     }
 
     @GetMapping(value = "/graphs/{graphID}")
-    public builtBarGraph getGraph(@PathVariable String graphID) {
-        int intGraphID = Integer.parseInt(graphID);
-
-        builtBarGraph returnableGraph = graphs.get(intGraphID);
+    public ResponseEntity<builtBarGraph> getGraph(@PathVariable int graphID) {
+        builtBarGraph returnableGraph = graphs.get(graphID);
         if (returnableGraph != null) {
-            return returnableGraph;
+            return ResponseEntity.ok(returnableGraph);
         } else {
-            System.out.println("Could not find graph");
-            return null;
+            return ResponseEntity.notFound().build();
         }
-
     }
 
     @DeleteMapping(value = "/graphs/{graphID}")
-    public ResponseEntity<Object> deleteGraph(@PathVariable String graphID) {
-
-        int intGraphID = Integer.parseInt(graphID);
-        builtBarGraph graphToDelete = graphs.get(intGraphID);
+    public ResponseEntity<String> deleteGraph(@PathVariable int graphID) {
+        builtBarGraph graphToDelete = graphs.get(graphID);
         if (graphToDelete != null) {
-            graphs.remove(intGraphID);
-            return ResponseEntity.ok().body("Graph deleted");
+            graphs.remove(graphID);
+            return ResponseEntity.ok().build();
         } else {
-            System.out.println("Could not find graph");
-            return ResponseEntity.ok().body("Graph not found");
+            return ResponseEntity.notFound().build();
         }
     }
 
     @PostMapping("/graphs")
-    public builtBarGraph recieveGraph(@RequestBody Graph graph) {
-        id_counter += 1;
+    public ResponseEntity<builtBarGraph> recieveGraph(@RequestBody Graph graph) {
+        long newID = id_counter.incrementAndGet();
+
+        if (graph == null) {
+            return ResponseEntity.badRequest().build();
+        }
 
         System.out.println("Recieved graph with ID ");
 
@@ -62,13 +64,13 @@ public class GBcontroller {
 
         ArrayList<Long> yAxisValues = BuildGraph.divideGraph(ceilingValue); // divide the graph into 10 parts
 
-        builtBarGraph builtGraph = new builtBarGraph(id_counter, graph.xAxisLabel(),
+        builtBarGraph builtGraph = new builtBarGraph((int) newID, graph.xAxisLabel(),
                 graph.yAxisLabel(),
                 graph.categories(), ceilingValue, graph.title(),
                 yAxisValues, xAxisValuesRounded);
         System.out.println("Graph created with ID " + builtGraph.id());
         graphs.put(builtGraph.id(), builtGraph);
 
-        return builtGraph;
+        return ResponseEntity.ok(builtGraph);
     }
 }
