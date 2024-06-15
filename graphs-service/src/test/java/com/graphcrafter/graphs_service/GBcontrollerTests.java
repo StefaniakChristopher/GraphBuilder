@@ -119,24 +119,14 @@ public class GBcontrollerTests {
         @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD) // to reset the state of the
                                                                                       // application before each test
         public void testReceiveGraph() throws Exception {
-
-                String graphJson = "{\"id\":\"0\",\"categories\":[\"fdsfds\",\"fdsf\",\"fdsfdsf\"],\"magnitude\": \"30\", \"xAxisValues\": [\"10\", \"8\", \"3\"],\"title\":\"Test Graph\",\"yAxisLabel\":\"Y Label\", \"xAxisLabel\":\"X Label\"}";
-
-                mockMvc.perform(post("/graphs")
-                                .contentType(MediaType.APPLICATION_JSON)
-                                .content(graphJson))
-                                .andExpect(status().isOk())
-                                .andExpect(content().json(builtGraphJSON));
+                postGenericGraph();
         }
 
         @Test
         @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
         public void testGetGraph() throws Exception {
 
-                mockMvc.perform(post("/graphs")
-                                .contentType(MediaType.APPLICATION_JSON)
-                                .content("{\"id\":\"0\",\"categories\":[\"fdsfds\",\"fdsf\",\"fdsfdsf\"],\"magnitude\":\"30\", \"xAxisValues\": [\"10\", \"8\", \"3\"],\"title\":\"Test Graph\",\"yAxisLabel\":\"Y Label\", \"xAxisLabel\":\"X Label\"}"))
-                                .andExpect(status().isOk());
+                postGenericGraph();
 
                 mockMvc.perform(get("/graphs/" + graphID)
                                 .contentType(MediaType.APPLICATION_JSON))
@@ -153,10 +143,7 @@ public class GBcontrollerTests {
         @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
         public void testDeleteGraph() throws Exception {
 
-                mockMvc.perform(post("/graphs")
-                                .contentType(MediaType.APPLICATION_JSON)
-                                .content(builtGraphJSON))
-                                .andExpect(status().isOk());
+                postGenericGraph();
 
                 mockMvc.perform(delete("/graphs/" + graphID)
                                 .contentType(MediaType.APPLICATION_JSON))
@@ -176,19 +163,19 @@ public class GBcontrollerTests {
                                 .contentType(MediaType.APPLICATION_JSON))
                                 .andExpect(status().isNoContent());
 
-                mockMvc.perform(post("/graphs")
-                                .contentType(MediaType.APPLICATION_JSON)
-                                .content("{\"id\":\"0\",\"categories\":[\"fdsfds\",\"fdsf\",\"fdsfdsf\"],\"magnitude\":\"30\", \"xAxisValues\": [\"10\", \"8\", \"3\"],\"title\":\"Test Graph\",\"yAxisLabel\":\"Y Label\", \"xAxisLabel\":\"X Label\"}"))
-                                .andExpect(status().isOk());
-
-                mockMvc.perform(post("/graphs")
-                                .contentType(MediaType.APPLICATION_JSON)
-                                .content("{\"id\":\"0\",\"categories\":[\"fdsfds\",\"fdsf\",\"fdsfdsf\"],\"magnitude\":\"30\", \"xAxisValues\": [\"10\", \"8\", \"3\"],\"title\":\"Test Graph\",\"yAxisLabel\":\"Y Label\", \"xAxisLabel\":\"X Label\"}"))
-                                .andExpect(status().isOk());
+                postGenericGraph();
+                postGenericGraph();
 
                 mockMvc.perform(get("/allgraphs")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(builtGraphsJSON))
+                                .andExpect(status().isOk());
+        }
+
+        private void postGenericGraph() throws Exception {
+                mockMvc.perform(post("/graphs")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content("{\"id\":\"0\",\"categories\":[\"fdsfds\",\"fdsf\",\"fdsfdsf\"],\"magnitude\":\"30\", \"xAxisValues\": [\"10\", \"8\", \"3\"],\"title\":\"Test Graph\",\"yAxisLabel\":\"Y Label\", \"xAxisLabel\":\"X Label\"}"))
                                 .andExpect(status().isOk());
         }
 
