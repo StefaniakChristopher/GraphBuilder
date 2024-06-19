@@ -3,6 +3,7 @@ package com.graphcrafter.graphs_service;
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import jakarta.validation.Valid;
 
 @RestController
 public class GBcontroller {
@@ -48,12 +51,15 @@ public class GBcontroller {
     }
 
     @PostMapping("/graphs")
-    public ResponseEntity<Graph> recieveGraph(@RequestBody Graph graph) {
-        long newID = id_counter.incrementAndGet();
+    public ResponseEntity<Object> recieveGraph(@Valid @RequestBody Graph graph) {
+        if (ValidateBalance.validateCategories(graph.getCategories(), graph.getCategoryValues()) == false) {
+            var errorDetails = new ErrorDetails(
+                    "Amount of categories and category values do not match");
 
-        if (graph == null) {
-            return ResponseEntity.badRequest().build();
+            return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
         }
+
+        long newID = id_counter.incrementAndGet();
 
         graph.setId((int) newID);
 

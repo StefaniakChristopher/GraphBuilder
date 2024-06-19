@@ -33,6 +33,11 @@ public class GBcontrollerTests {
                                                                                       // application before each test
         public void testReceiveGraph() throws Exception {
                 postGenericGraph();
+
+                mockMvc.perform(post("/graphs")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content("{\"id\":\"0\",\"categories\":[\"fdsfds\",\"fdsf\",\"fdsfdsf\"], \"categoryValues\": [\"10\", \"8.9\", \"3\"],\"title\":\"Test Graph\",\"yAxisLabel\":\"Y Label\", \"xAxisLabel\":\"X Label\"}"))
+                                .andExpect(status().isBadRequest());
         }
 
         @Test
