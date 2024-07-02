@@ -13,6 +13,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.hamcrest.Matchers.containsString;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -21,9 +22,9 @@ public class GBcontrollerTests {
         String graphID = "1";
         String falseFalseGraphID = "-2";
 
-        String builtGraphsJSON = "{\"1\":{\"id\":1,\"categories\":[\"fdsfds\",\"fdsf\",\"fdsfdsf\"],\"categoryValues\":[\"10\",\"8.9\",\"3\"],\"title\":\"Test Graph\",\"yaxisLabel\":\"Y Label\",\"xaxisLabel\":\"X Label\"},\"2\":{\"id\":2,\"categories\":[\"fdsfds\",\"fdsf\",\"fdsfdsf\"],\"categoryValues\":[\"10\",\"8.9\",\"3\"],\"title\":\"Test Graph\",\"yaxisLabel\":\"Y Label\",\"xaxisLabel\":\"X Label\"}}";
+        String builtGraphsJSON = "{\"1\":{\"id\":1,\"categories\":[\"fdsfds\",\"fdsf\",\"fdsfdsf\"],\"categoryValues\":[\"10\",\"8\",\"3\"],\"title\":\"Test Graph\",\"yaxisLabel\":\"Y Label\",\"xaxisLabel\":\"X Label\"},\"2\":{\"id\":2,\"categories\":[\"fdsfds\",\"fdsf\",\"fdsfdsf\"],\"categoryValues\":[\"10\",\"8.9\",\"3\"],\"title\":\"Test Graph\",\"yaxisLabel\":\"Y Label\",\"xaxisLabel\":\"X Label\"}}";
 
-        String builtGraphJSON = "{\"id\":1,\"categories\":[\"fdsfds\",\"fdsf\",\"fdsfdsf\"],\"categoryValues\":[\"10\",\"8.9\",\"3\"],\"title\":\"Test Graph\",\"yaxisLabel\":\"Y Label\",\"xaxisLabel\":\"X Label\"}";
+        String builtGraphJSON = "{\"id\":1,\"categories\":[\"fdsfds\",\"fdsf\",\"fdsfdsf\"],\"categoryValues\":[\"10\",\"8\",\"3\"],\"title\":\"Test Graph\",\"yaxisLabel\":\"Y Label\",\"xaxisLabel\":\"X Label\"}";
 
         @Autowired
         private MockMvc mockMvc;
@@ -33,11 +34,30 @@ public class GBcontrollerTests {
                                                                                       // application before each test
         public void testReceiveGraph() throws Exception {
                 postGenericGraph();
+        }
+
+        @Test
+        @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
+        public void testReceiveDecimal() throws Exception {
 
                 mockMvc.perform(post("/graphs")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content("{\"id\":\"0\",\"categories\":[\"fdsfds\",\"fdsf\",\"fdsfdsf\"], \"categoryValues\": [\"10\", \"8.9\", \"3\"],\"title\":\"Test Graph\",\"yAxisLabel\":\"Y Label\", \"xAxisLabel\":\"X Label\"}"))
-                                .andExpect(status().isBadRequest());
+                                .andExpect(status().isBadRequest())
+                                .andExpect(content().string(
+                                                containsString("Each category value must be a whole numeric value")));
+        }
+
+        @Test
+        @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
+        public void testNotEqualCategories() throws Exception {
+
+                mockMvc.perform(post("/graphs")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content("{\"id\":\"0\",\"categories\":[\"fdsfds\",\"fdsf\",\"fdsfdsf\"], \"categoryValues\": [\"10\", \"8\"],\"title\":\"Test Graph\",\"yAxisLabel\":\"Y Label\", \"xAxisLabel\":\"X Label\"}"))
+                                .andExpect(status().isBadRequest())
+                                .andExpect(content().string(containsString(
+                                                "Amount of categories and category values do not match")));
         }
 
         @Test
@@ -93,7 +113,7 @@ public class GBcontrollerTests {
         private void postGenericGraph() throws Exception {
                 mockMvc.perform(post("/graphs")
                                 .contentType(MediaType.APPLICATION_JSON)
-                                .content("{\"id\":\"0\",\"categories\":[\"fdsfds\",\"fdsf\",\"fdsfdsf\"], \"categoryValues\": [\"10\", \"8.9\", \"3\"],\"title\":\"Test Graph\",\"yAxisLabel\":\"Y Label\", \"xAxisLabel\":\"X Label\"}"))
+                                .content("{\"id\":\"0\",\"categories\":[\"fdsfds\",\"fdsf\",\"fdsfdsf\"], \"categoryValues\": [\"10\", \"8\", \"3\"],\"title\":\"Test Graph\",\"yAxisLabel\":\"Y Label\", \"xAxisLabel\":\"X Label\"}"))
                                 .andExpect(status().isOk());
         }
 

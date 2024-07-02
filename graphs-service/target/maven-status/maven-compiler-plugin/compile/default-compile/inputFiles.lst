@@ -1,7 +1,9 @@
 D:\VS CODE\GraphBuilderProject\graphs-service\src\main\java\com\graphcrafter\graphs_service\ErrorDetails.java
+D:\VS CODE\GraphBuilderProject\graphs-service\src\main\java\com\graphcrafter\graphs_service\ValidNumericArray.java
 D:\VS CODE\GraphBuilderProject\graphs-service\src\main\java\com\graphcrafter\graphs_service\ValidateBalance.java
 D:\VS CODE\GraphBuilderProject\graphs-service\src\main\java\com\graphcrafter\graphs_service\ValidCategory.java
 D:\VS CODE\GraphBuilderProject\graphs-service\src\main\java\com\graphcrafter\graphs_service\GraphCrafterApplication.java
+D:\VS CODE\GraphBuilderProject\graphs-service\src\main\java\com\graphcrafter\graphs_service\NumericArrayValidator.java
 D:\VS CODE\GraphBuilderProject\graphs-service\src\main\java\com\graphcrafter\graphs_service\CategoryValidator.java
 D:\VS CODE\GraphBuilderProject\graphs-service\src\main\java\com\graphcrafter\graphs_service\GlobalExceptionHandler.java
 D:\VS CODE\GraphBuilderProject\graphs-service\src\main\java\com\graphcrafter\graphs_service\Graph.java

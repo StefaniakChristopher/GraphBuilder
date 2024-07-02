@@ -21,14 +21,16 @@ public class Graph {
 
         @NotNull(message = "Category values cannot be null")
         @Size(min = 1, max = 30, message = "There must be between 1 and 30 category values")
-        private long[] categoryValues;
+        @ValidNumericArray(message = "Each category value must be a whole numeric value")
+        @ValidCategory(message = "Each category must be between 1 and 30 characters")
+        private String[] categoryValues;
 
         @NotNull(message = "Title cannot be null")
         @Size(min = 1, max = 100, message = "Title length must be between 1 and 100 characters")
         private String title;
 
         public Graph(int id, String xAxisLabel, String yAxisLabel, String[] categories, String title,
-                        long[] categoryValues) {
+                        String[] categoryValues) {
                 this.id = id;
                 this.xAxisLabel = xAxisLabel;
                 this.yAxisLabel = yAxisLabel;
@@ -57,7 +59,7 @@ public class Graph {
                 return title;
         }
 
-        public long[] getCategoryValues() {
+        public String[] getCategoryValues() {
                 return categoryValues;
         }
 
