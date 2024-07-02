@@ -20,7 +20,6 @@ public class Graph {
         private String[] categories;
 
         @NotNull(message = "Category values cannot be null")
-        @Size(min = 1, max = 30, message = "There must be between 1 and 30 category values")
         @ValidNumericArray(message = "Each category value must be a whole numeric value")
         @ValidCategory(message = "Each category must be between 1 and 30 characters")
         private String[] categoryValues;
