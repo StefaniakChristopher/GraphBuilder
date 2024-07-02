@@ -20,37 +20,19 @@ const GraphOptions = ({ setCurrentGraph, graphHeight, setGraphHeight }) => {
   const postGraph = async (newGraph) => {
     setCurrentMessage("");
     try {
-      const { title, xAxisLabel, yAxisLabel, categories, categoryValues } =
-        newGraph;
-      if (categories && categoryValues && title && xAxisLabel && yAxisLabel) {
-        if (magnitudeChecker(categoryValues)) {
-          if (categoryChecker(categories)) {
-            const builtGraph = await api.post(host + "/graphs", newGraph);
-            setCurrentGraph(builtGraph.data);
-          } else {
-            setCurrentMessage(
-              "Individual categories must be lower than 40 characters"
-            );
-          }
-        } else {
-          setCurrentMessage("Magnitudes must be lower than 6 digits");
-        }
-      } else if (
-        categories ||
-        categoryValues ||
-        title ||
-        xAxisLabel ||
-        yAxisLabel
-      ) {
-        setCurrentMessage("Input is incomplete, please finish the input");
-      } else {
-        setCurrentMessage("Please fill out the given paramters");
-      }
+      const response = await api.post(host + "/graphs", newGraph);
+      setCurrentGraph(response.data);
     } catch (err) {
       console.log(err);
       console.log(err.response.data);
       console.log(err.response.status);
       console.log(err.response.headers);
+
+      if (err.response.status == 400) {
+        setCurrentMessage(err.response.data.message);
+      } else if (err.response.status !== 200) {
+        setCurrentMessage("An error occurred. Please try again.");
+      }
     }
   };
 

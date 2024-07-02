@@ -1,7 +1,5 @@
 package com.graphcrafter.graphs_service;
 
-import java.util.Arrays;
-
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
