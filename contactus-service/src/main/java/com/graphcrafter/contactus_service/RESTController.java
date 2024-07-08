@@ -17,7 +17,7 @@ public class RESTController {
     HashMap<Integer, Message> messageHashMap = new HashMap<>();
 
     @PostMapping("/contact")
-    public ResponseEntity<Object> recieveMessage(@Valid @RequestBody Message message) {
+    public ResponseEntity<Object> receiveMessage(@Valid @RequestBody Message message) {
 
         long newID = id_counter.incrementAndGet();
 

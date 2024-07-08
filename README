@@ -2,9 +2,9 @@ GraphBuilder is an application that allows users to build bar graphs based on a 
 
 To run GraphBuilder, you need to install the following:
 
-  Node.js
-  JDK
-  
+Node.js
+JDK
+
 Once these are installed, create a new folder in Visual Studio and open it
 
 Once there, open a PowerShell Terminal and run this command: "git clone https://github.com/StefaniakChristopher/GraphBuilder.git"
@@ -20,30 +20,29 @@ Run this command: "npm install"
 
 Then run this command: "npm start"
 
-
 To use the application, input data that you would like to be represented in a bar graph
 The label of the input box corresponds to an area on the graph that is intially labled the same as the label for the text box
 For the "Categories" and "Magnitude" input, enter your categories like this:
 
-  Category1,Category2,Category 3,Category4
+Category1,Category2,Category 3,Category4
 
 Where the categories are seprated by commas and having no space after and before the commas
 The Magnitude input follows a similar doctrine, the only difference is that only number are allowed as input
 For example:
 
-  45,23,64,23
-  
+45,23,64,23
+
 Decimal number are allowed but they will be rounded off, so the only numbers truly applicable are positive integers
 
-When inputing these values, the first category you input will corresspond to the first magnitude you input, and the second category you input will 
+When inputing these values, the first category you input will corresspond to the first magnitude you input, and the second category you input will
 correspond to the second magnitude you input and so on.
 
 Here is an example with our current inputs
 
-  Category1: 45
-  Category2: 23
-  Category 3: 64
-  Category4: 23
+Category1: 45
+Category2: 23
+Category 3: 64
+Category4: 23
 
 TO RUN WITH KUBERNETES:
 
@@ -53,21 +52,20 @@ TO RUN WITH KUBERNETES:
       Helm
       WINDOWS
 
-  1. Start docker daemon
+1. Start docker daemon
 
-  2. Open powershell and enter "minikube start"
+2. Open powershell and enter "minikube start"
 
-  3. Enter "minikube addons enable ingress"
+3. Enter "minikube addons enable ingress"
 
-  4. Navigate to the "GraphBuilderProject" folder and enter "helm install graph-builder ./Kubernetes"
+4. Navigate to the "GraphBuilderProject" folder and enter "helm install graph-builder ./Kubernetes"
 
-  4. Enter "kubectl get pod --watch" (watch them grow up)
+5. Enter "kubectl get pod --watch" (watch them grow up)
 
-  5. Open another powershell terminal and enter "minikube tunnel"
+6. Open another powershell terminal and enter "minikube tunnel"
 
-  6. Ensure that "127.0.0.1 graphbuilder.com" is in the hosts file by entering "notepad C:\Windows\System32\drivers\etc\hosts" in an administrator command line. This should be on its own seperate line standalone without a "#" in front of them (windows is the reason why the IP is 127.0.0.1)
+7. Ensure that "127.0.0.1 graphbuilder.com" is in the hosts file by entering "notepad C:\Windows\System32\drivers\etc\hosts" in an administrator command line. This should be on its own seperate line standalone without a "#" in front of them (windows is the reason why the IP is 127.0.0.1)
 
-  7. Navigate to "graphbuilder.com" on the web browser and have fun
+8. Navigate to "graphbuilder.com" on the web browser and have fun
 
-  
 Demo Video: https://drive.google.com/file/d/1oeLMAB49enYbno6JUuurxQbWiEXbc9jq/view?usp=sharing
