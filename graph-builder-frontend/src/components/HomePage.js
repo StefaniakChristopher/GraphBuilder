@@ -1,7 +1,6 @@
 import React from "react";
 import { FaChevronRight } from "react-icons/fa";
 import { IoStar } from "react-icons/io5";
-import Footer from "./Footer";
 import { Link } from "react-router-dom";
 import StepsPicture from "../assets/stepsgraphcrafter.png";
 
@@ -160,7 +159,7 @@ const HomePage = () => {
 
             <div className="w-[300px] p-4 border-2">
               <h4 className="[color:var(--font-primary)] text-2xl font-semibold mb-1">
-                LOVE it more than my WIFE
+                LOVE it more than my FAMILY
               </h4>
               <div className="flex text-yellow-500 gap-2 mb-1">
                 <IoStar />

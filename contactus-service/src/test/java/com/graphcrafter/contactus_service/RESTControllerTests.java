@@ -1,7 +1,6 @@
 package com.graphcrafter.contactus_service;
 
 import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.mock;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
