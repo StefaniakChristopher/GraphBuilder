@@ -62,7 +62,7 @@ public class GMailer {
         return new AuthorizationCodeInstalledApp(flow, receiver).authorize("user");
     }
 
-    public void sendMail(String subject, String message) throws Exception {
+    public void sendMail(String message) throws Exception {
 
       
         // Encode as MIME message
@@ -73,7 +73,7 @@ public class GMailer {
         email.setFrom(new InternetAddress(supportEmail));
         email.addRecipient(javax.mail.Message.RecipientType.TO,
                 new InternetAddress(supportEmail));
-        email.setSubject(subject);
+        email.setSubject("Contact Us User");
         email.setText(message);
 
         
@@ -99,9 +99,5 @@ public class GMailer {
                 throw e;
             }
         }
-    }
-
-    public static void main(String[] args) throws Exception {
-        new GMailer().sendMail("Allah", "Wa hamdiiluah wa izaatim muqmeen");
     }
 }

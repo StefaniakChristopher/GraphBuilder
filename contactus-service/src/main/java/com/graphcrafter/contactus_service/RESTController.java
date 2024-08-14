@@ -15,7 +15,7 @@ public class RESTController {
     public ResponseEntity<Object> sendMessage(@Valid @RequestBody ConsolidatedMessage message)
             throws Exception {
         
-        new GMailer().sendMail(message.getEmail(), message.getMessage());
+        new GMailer().sendMail("Sender Email: " + message.getEmail() + "\n\nDear GraphCrafter,\n\n" + message.getMessage() + "\n\nSincerely, " + message.getName());
 
         return ResponseEntity.ok(null);
     }
