@@ -19,9 +19,4 @@ public class RESTController {
 
         return ResponseEntity.ok(null);
     }
-
-    @PostMapping("/test")
-    public ResponseEntity<Object> test() {
-        return ResponseEntity.ok(null);
-    }
 }
