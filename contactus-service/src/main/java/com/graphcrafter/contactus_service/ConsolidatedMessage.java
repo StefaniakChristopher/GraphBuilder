@@ -3,7 +3,7 @@ package com.graphcrafter.contactus_service;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
 
-public class Message {
+public class ConsolidatedMessage {
 
     private int id;
 
@@ -17,7 +17,7 @@ public class Message {
     @Size(min = 10, max = 1000, message = "Message should be between 10 and 1000 characters")
     private String message;
 
-    public Message(int id, String name, String email, String message) {
+    public ConsolidatedMessage(int id, String name, String email, String message) {
         this.id = id;
         this.name = name;
         this.email = email;
