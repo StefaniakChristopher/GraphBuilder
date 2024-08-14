@@ -64,15 +64,19 @@ public class GMailer {
 
     public void sendMail(String subject, String message) throws Exception {
 
+      
         // Encode as MIME message
         Properties props = new Properties();
         Session session = Session.getDefaultInstance(props, null);
+        System.out.println("heola");
         MimeMessage email = new MimeMessage(session);
         email.setFrom(new InternetAddress(supportEmail));
         email.addRecipient(javax.mail.Message.RecipientType.TO,
                 new InternetAddress(supportEmail));
         email.setSubject(subject);
         email.setText(message);
+
+        
 
         // Encode and wrap the MIME message into a gmail message
         ByteArrayOutputStream buffer = new ByteArrayOutputStream();

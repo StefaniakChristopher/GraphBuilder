@@ -14,7 +14,7 @@ public class RESTController {
     @PostMapping("/contact")
     public ResponseEntity<Object> sendMessage(@Valid @RequestBody ConsolidatedMessage message)
             throws Exception {
-        System.out.println("heola");
+        
         new GMailer().sendMail(message.getEmail(), message.getMessage());
 
         return ResponseEntity.ok(null);
@@ -22,7 +22,6 @@ public class RESTController {
 
     @PostMapping("/test")
     public ResponseEntity<Object> test() {
-        System.out.println("heola");
         return ResponseEntity.ok(null);
     }
 }
