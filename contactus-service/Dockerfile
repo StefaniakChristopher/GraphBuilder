@@ -4,8 +4,8 @@ COPY . /app
 
 WORKDIR /app
 
-ENV PORT=8081
+ENV PORT=8080
 
-EXPOSE 8081
+EXPOSE 8080
 
 CMD ./mvnw spring-boot:run

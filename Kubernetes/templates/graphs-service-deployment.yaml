@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gc-graphs-service-deployment
+  labels:
+    app: gc-graphs-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gc-graphs-service
+  template:
+    metadata:
+      labels:
+        app: gc-graphs-service
+    spec:
+      containers:
+      - name: gc-graphs-service
+        image: chrisstefaniak/gc-graphs-service:latest
+        imagePullPolicy: Always 
+        ports:
+        - containerPort: 8081

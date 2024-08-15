@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend-service
+  name: contactus-service
 spec:
   selector:
-    app: gb-backend
+    app: gc-contactus-service
   ports:
     - port: 8080

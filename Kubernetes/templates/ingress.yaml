@@ -3,10 +3,11 @@ kind: Ingress
 metadata:
   name: gb-ingress
   annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
   rules:
-  - host: graphbuilder.com
+  - host: graphcrafter.com
     http:
       paths:
       - pathType: Prefix
@@ -17,20 +18,69 @@ spec:
             port:
               number: 4000
       - pathType: Prefix
-        path: /graphs
+        path: /creategraph
         backend:
           service:
-            name: backend-service
+            name: frontend-service
+            port:
+              number: 4000
+      - pathType: Prefix
+        path: /savedgraphs
+        backend:
+          service:
+            name: frontend-service
+            port:
+              number: 4000
+      - pathType: Prefix
+        path: /about
+        backend:
+          service:
+            name: frontend-service
+            port:
+              number: 4000
+      - pathType: Prefix
+        path: /contact
+        backend:
+          service:
+            name: frontend-service
+            port:
+              number: 4000
+      - pathType: Prefix
+        path: /allgraphs
+        backend:
+          service:
+            name: graphs-service
+            port:
+              number: 8081
+      - pathType: ImplementationSpecific
+        path: /graphs/(.*)
+        backend:
+          service:
+            name: graphs-service
+            port:
+              number: 8081
+      - pathType: Prefix
+        path: /actuator/prometheus
+        backend:
+          service:
+            name: graphs-service
+            port:
+              number: 8081
+      - pathType: Prefix
+        path: /contact
+        backend:
+          service:
+            name: contactus-service
             port:
               number: 8080
       - pathType: Prefix
         path: /actuator/prometheus
         backend:
           service:
-            name: backend-service
+            name: contactus-service
             port:
               number: 8080
-  - host: metrics.graphbuilder.com
+  - host: metrics.graphcrafter.com
     http:
       paths:
       - pathType: Prefix

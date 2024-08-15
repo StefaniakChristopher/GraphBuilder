@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: gb-backend-deployment
+  name: gc-contactus-service-deployment
   labels:
-    app: gb-backend
+    app: gc-contactus-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: gb-backend
+      app: gc-contactus-service
   template:
     metadata:
       labels:
-        app: gb-backend
+        app: gc-contactus-service
     spec:
       containers:
-      - name: gb-backend
-        image: chrisstefaniak/gb-backend:latest
+      - name: gc-contactus-service
+        image: chrisstefaniak/gc-contactus-service:latest
         imagePullPolicy: Always 
         ports:
         - containerPort: 8080
