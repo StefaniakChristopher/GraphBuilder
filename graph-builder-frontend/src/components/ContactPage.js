@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
+import { contactServiceHost } from "../host";
 
 const ContactPage = () => {
   const initialState = {
@@ -32,7 +33,7 @@ const ContactPage = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        "http://localhost:8080/contact",
+        contactServiceHost + "/contact",
         consolidatedMessage
       );
       setLoading(false);
@@ -86,7 +87,7 @@ const ContactPage = () => {
               name="message"
               value={consolidatedMessage.message}
               onChange={handleChange}
-              required  
+              required
             />
             <div className="flex justify-between items-center w-full mt-4">
               <button
@@ -99,7 +100,13 @@ const ContactPage = () => {
                 {loading && (
                   <div className="spinner border-t-4 border-blue-500 rounded-full w-6 h-6 animate-spin"></div>
                 )}
-                <p className={`text-white ${resultMessage.includes("Message failed to send") ? "text-red-500" : "text-green-400"} `}>
+                <p
+                  className={`${
+                    resultMessage.includes("Message failed to send")
+                      ? "text-red-500"
+                      : "text-green-400"
+                  } `}
+                >
                   {resultMessage.split("\n").map((line, index) => (
                     <span key={index}>
                       {line}

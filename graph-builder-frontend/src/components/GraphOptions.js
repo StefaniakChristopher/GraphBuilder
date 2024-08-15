@@ -1,8 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import { magnitudeChecker, categoryChecker } from "../inputCheck";
 import api from "axios";
-import { host } from "../host";
+import { graphsServiceHost } from "../host";
 import { CiCirclePlus } from "react-icons/ci";
 import { CiCircleMinus } from "react-icons/ci";
 
@@ -20,7 +19,7 @@ const GraphOptions = ({ setCurrentGraph, graphHeight, setGraphHeight }) => {
   const postGraph = async (newGraph) => {
     setCurrentMessage("");
     try {
-      const response = await api.post(host + "/graphs", newGraph);
+      const response = await api.post(graphsServiceHost + "/graphs", newGraph);
       setCurrentGraph(response.data);
     } catch (err) {
       console.log(err);

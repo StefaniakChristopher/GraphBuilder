@@ -9,7 +9,7 @@ import { RxCross1 } from "react-icons/rx";
 import { HiMiniMagnifyingGlass } from "react-icons/hi2";
 import { FaRegTrashAlt } from "react-icons/fa";
 import axios from "axios";
-import { host } from "../host";
+import { graphsServiceHost } from "../host";
 import { GrDocumentTransfer } from "react-icons/gr";
 
 // UNUSED COMPONENT
@@ -22,7 +22,7 @@ const GraphsModal = ({ setOpenSavedGraphs, setCurrentGraph }) => {
   const [searchText, setSearchText] = useState("");
 
   const fetchGraphs = async () => {
-    const { data } = await axios(`${host}/allgraphs`);
+    const { data } = await axios(`${graphsServiceHost}/allgraphs`);
 
     const entries = Object.entries(data);
     console.log(entries);
@@ -31,7 +31,7 @@ const GraphsModal = ({ setOpenSavedGraphs, setCurrentGraph }) => {
 
   const deleteGraph = async (graph) => {
     try {
-      const response = await axios.delete(host + "/graphs/" + graph.id);
+      const response = await axios.delete(graphsServiceHost + "/graphs/" + graph.id);
       if (response.status === 200) {
         setGraphs(graphs.filter(([arrPos, g]) => g !== graph));
       }
