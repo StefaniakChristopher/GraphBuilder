@@ -2,8 +2,6 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: gb-ingress
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
   rules:
@@ -67,7 +65,7 @@ spec:
             port:
               number: 8081
       - pathType: Prefix
-        path: /contact
+        path: /contactus
         backend:
           service:
             name: contactus-service
