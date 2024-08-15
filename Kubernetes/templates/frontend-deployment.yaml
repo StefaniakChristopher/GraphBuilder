@@ -20,3 +20,6 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 4000
+        env:
+        - name: REACT_APP_HOST
+          value: "graphcrafter.com"
