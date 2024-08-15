@@ -36,7 +36,7 @@ public class RESTControllerTests {
 
         doNothing().when(gMailer).sendMail("Sender Email: test@example.com\n\nDear GraphCrafter,\n\nThis is a test message.\n\nSincerely, Test User");
 
-        mockMvc.perform(post("/contact")
+        mockMvc.perform(post("/contactus")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(message)))
                 .andExpect(status().isOk());

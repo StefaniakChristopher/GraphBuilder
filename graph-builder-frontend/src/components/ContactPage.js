@@ -33,7 +33,7 @@ const ContactPage = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        contactServiceHost + "/contact",
+        contactServiceHost + "/contactus",
         consolidatedMessage
       );
       setLoading(false);

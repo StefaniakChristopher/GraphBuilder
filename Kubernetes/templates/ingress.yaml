@@ -52,8 +52,8 @@ spec:
             name: graphs-service
             port:
               number: 8081
-      - pathType: ImplementationSpecific
-        path: /graphs/(.*)
+      - pathType: Prefix
+        path: /graphs
         backend:
           service:
             name: graphs-service

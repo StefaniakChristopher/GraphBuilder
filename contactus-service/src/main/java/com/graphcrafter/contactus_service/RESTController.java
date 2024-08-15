@@ -11,7 +11,7 @@ import jakarta.validation.Valid;
 @RestController
 public class RESTController {
 
-    @PostMapping("/contact")
+    @PostMapping("/contactus")
     public ResponseEntity<Object> sendMessage(@Valid @RequestBody ConsolidatedMessage message)
             throws Exception {
         
