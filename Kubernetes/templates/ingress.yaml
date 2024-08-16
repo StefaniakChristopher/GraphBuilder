@@ -58,7 +58,7 @@ spec:
             port:
               number: 8081
       - pathType: Prefix
-        path: /actuator/prometheus
+        path: /graphs/actuator/prometheus
         backend:
           service:
             name: graphs-service
@@ -72,7 +72,7 @@ spec:
             port:
               number: 8080
       - pathType: Prefix
-        path: /actuator/prometheus
+        path: /contactus/actuator/prometheus
         backend:
           service:
             name: contactus-service
