@@ -26,7 +26,6 @@ data:
       "editable": true,
       "fiscalYearStartMonth": 0,
       "graphTooltip": 0,
-      "id": 1,
       "links": [],
       "liveNow": false,
       "panels": [
@@ -42,6 +41,7 @@ data:
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
                 "axisCenteredZero": false,
                 "axisColorMode": "text",
                 "axisLabel": "",
@@ -136,8 +136,7 @@ data:
         }
       ],
       "refresh": "",
-      "schemaVersion": 38,
-      "style": "dark",
+      "schemaVersion": 39,
       "tags": [],
       "templating": {
         "list": []
@@ -148,8 +147,8 @@ data:
       },
       "timepicker": {},
       "timezone": "",
-      "title": "hi",
+      "title": "Graphs Service",
       "uid": "ab95270d-f9c9-4aac-b69c-b192e06cc9c5",
-      "version": 2,
+      "version": 1,
       "weekStart": ""
     }
