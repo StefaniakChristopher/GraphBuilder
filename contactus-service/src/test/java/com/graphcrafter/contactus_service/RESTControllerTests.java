@@ -1,44 +1,33 @@
 package com.graphcrafter.contactus_service;
 
-import static org.mockito.Mockito.doNothing;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-@WebMvcTest(RESTController.class)
+@SpringBootTest
+@AutoConfigureMockMvc
 public class RESTControllerTests {
 
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
-    private GMailer gMailer;
-
-    private ObjectMapper objectMapper;
-
-    @BeforeEach
-    public void setUp() {
-        objectMapper = new ObjectMapper();
-    }
+    private SendGridEmailer sendGridEmailer;
 
     @Test
     public void testSendMessage() throws Exception {
-        ConsolidatedMessage message = new ConsolidatedMessage(1, "Test User", "test@example.com", "This is a test message.");
 
-        doNothing().when(gMailer).sendMail("Sender Email: test@example.com\n\nDear GraphCrafter,\n\nThis is a test message.\n\nSincerely, Test User");
+        String messageJson = "{ \"email\": \"test@example.com\", \"name\": \"Test User\", \"message\": \"This is a test message.\" }";
 
         mockMvc.perform(post("/contactus")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(message)))
+                .contentType("application/json")
+                .content(messageJson))
                 .andExpect(status().isOk());
     }
 }

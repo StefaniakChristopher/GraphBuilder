@@ -36,11 +36,6 @@
 			<version>1.36.0</version>
 		</dependency>
 		<dependency>
-        	<groupId>com.google.apis</groupId>
-        	<artifactId>google-api-services-gmail</artifactId> <!-- need this-->
-        	<version>v1-rev20240520-2.0.0</version>
-    	</dependency>
-		<dependency>
 			<groupId>com.sun.mail</groupId>
 			<artifactId>javax.mail</artifactId>
 			<version>1.6.2</version>
@@ -60,21 +55,20 @@
     		<artifactId>javax.mail-api</artifactId>
     		<version>1.6.2</version>
 		</dependency>
-    
 		<dependency>
-            <groupId>com.google.oauth-client</groupId>
-            <artifactId>google-oauth-client-jetty</artifactId> <!-- need this-->
-            <version>1.32.1</version>
-        </dependency>
+			<groupId>io.github.cdimascio</groupId>
+			<artifactId>java-dotenv</artifactId>
+			<version>5.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sendgrid</groupId>
+			<artifactId>sendgrid-java</artifactId>
+			<version>5.0.0-rc.1</version>
+		</dependency>
 		<dependency>
 			<groupId>com.google.http-client</groupId>
 			<artifactId>google-http-client-jackson2</artifactId>
 			<version>1.44.2</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.api-client</groupId>
-			<artifactId>google-api-client</artifactId> <!-- need this-->
-			<version>2.6.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
