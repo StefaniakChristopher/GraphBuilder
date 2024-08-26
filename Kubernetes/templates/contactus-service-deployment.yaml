@@ -18,6 +18,14 @@ spec:
       - name: gc-contactus-service
         image: chrisstefaniak/gc-contactus-service:latest
         imagePullPolicy: Always 
+        env:
+          - name: SENDGRID_API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: sendgrid-api-key
+                key: SENDGRID_API_KEY
+          - name: ENV
+            value: "prod"
         ports:
         - containerPort: 8080
         
