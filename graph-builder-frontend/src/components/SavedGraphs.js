@@ -4,7 +4,7 @@ import SearchGraph from "./SearchGraph";
 
 const SavedGraphs = ({ currentGraph, setCurrentGraph }) => {
   return (
-    <div className="flex items-start">
+    <div className="flex items-start h-screen">
       <SearchGraph setCurrentGraph={setCurrentGraph} />
       <GraphItself currentGraph={currentGraph} />
     </div>

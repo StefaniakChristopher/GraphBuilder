@@ -46,7 +46,7 @@ const GraphOptions = ({ setCurrentGraph, graphHeight, setGraphHeight }) => {
           <input
             type="text"
             placeholder={`Category ${i + 1}`}
-            className="p-4 rounded-lg w-[165px] text-lg"
+            className="p-4 rounded-lg w-1/2 text-lg"
             onChange={(e) => {
               let newCategories = [...newGraph.categories];
 
@@ -61,7 +61,7 @@ const GraphOptions = ({ setCurrentGraph, graphHeight, setGraphHeight }) => {
           <input
             type="number"
             placeholder={`Value ${i + 1}`}
-            className="p-4 rounded-lg w-[165px] text-lg"
+            className="p-4 rounded-lg w-1/2 text-lg"
             onChange={(e) => {
               let newValues = [...newGraph.categoryValues];
 
@@ -99,13 +99,13 @@ const GraphOptions = ({ setCurrentGraph, graphHeight, setGraphHeight }) => {
             }))
           }
           placeholder="Enter Graph Title"
-          className="p-2 mb-3 rounded-lg w-[350px]"
+          className="p-2 mb-3 rounded-lg w-full"
         />
         {/* label for categories */}
         <input
           type="text"
           placeholder="Categories Label"
-          className="p-2 rounded-lg mb-3 w-[350px]"
+          className="p-2 rounded-lg mb-3 w-full"
           onChange={(e) => {
             setNewGraph((prevState) => ({
               ...prevState,
@@ -117,7 +117,7 @@ const GraphOptions = ({ setCurrentGraph, graphHeight, setGraphHeight }) => {
         <input
           type="text"
           placeholder="Values Label"
-          className="p-2 rounded-lg w-[350px] mb-3"
+          className="p-2 rounded-lg w-full mb-3"
           onChange={(e) => {
             setNewGraph((prevState) => ({
               ...prevState,
@@ -128,7 +128,7 @@ const GraphOptions = ({ setCurrentGraph, graphHeight, setGraphHeight }) => {
         {/* graph type */}
         <div className="mt-2 flex flex-col">
           <label className=" text-white">Select Graph Type: </label>
-          <select className="p-2 rounded-lg w-[350px] mt-1">
+          <select className="p-2 rounded-lg w-full mt-1">
             <option value="bar">Bar</option>
             <option value="pie">Pie</option>
           </select>
