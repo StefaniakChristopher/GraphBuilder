@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const NavLinks = () => {
+const NavLinks = ({ isColumn }) => {
   return (
     <nav>
-      <ul className="flex gap-16 text-xl font-bold">
+      <ul className={`flex ${isColumn ? "flex-col" : "flex-row"} gap-16 text-xl font-bold`}>
         <li>
           <Link
             to="/"
@@ -29,11 +29,6 @@ const NavLinks = () => {
             My Graphs
           </Link>
         </li>
-        {/* <li>
-      <Link className=" hover:text-cyan-600 cursor-pointer duration-300">
-        Templates
-      </Link>
-    </li> mayiyyyyyyyyyybe later*/}
         <li>
           <Link
             to="/about"
