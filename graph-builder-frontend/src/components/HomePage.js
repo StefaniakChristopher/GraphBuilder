@@ -31,12 +31,12 @@ const HomePage = () => {
         {/* features section */}
         <section className="mb-20">
           <hr className=" h-2 mx-[100px] [color:var(--font-secondary)] mb-12"></hr>
-          <div className="flex md:justify-start justify-center ">
-            <h2 className="[color:var(--font-primary)] text-6xl ml-0 md:ml-8 underline font-bold mb-20">
+          <div className="flex lg:justify-start justify-center ">
+            <h2 className="[color:var(--font-primary)] text-6xl ml-0 lg:ml-8 underline font-bold mb-20">
               Features
             </h2>
           </div>
-          <div className="flex justify-evenly md:flex-row flex-col items-center">
+          <div className="flex justify-evenly lg:flex-row flex-col items-center">
             <div className=" rounded-full [background:var(--bg-secondary)] size-64 flex justify-center items-center flex-col mb-8">
               <h3 className="[color:var(--font-primary)] text-3xl font-bold mb-4">
                 Graph Types
@@ -128,11 +128,13 @@ const HomePage = () => {
         {/* reviews section */}
         <section className="mb-20">
           <hr className=" h-2 mx-[100px] [color:var(--font-secondary)] mb-12"></hr>
-          <h2 className="[color:var(--font-primary)] text-6xl ml-8 underline font-bold mb-20">
-            Recent Reviews
-          </h2>
-          <div className="flex justify-evenly">
-            <div className="w-[300px] p-4 border-2">
+          <div className="flex justify-center lg:justify-start">
+            <h2 className="[color:var(--font-primary)] text-6xl ml-0 lg:ml-8 underline font-bold mb-20">
+              Recent Reviews
+            </h2>
+          </div>
+          <div className="flex justify-evenly items-center lg:items-stretch lg:flex-row flex-col">
+            <div className="w-[300px] p-4 border-2 mb-8">
               <h4 className="[color:var(--font-primary)] text-2xl font-semibold mb-1">
                 OMG it so cool!
               </h4>
@@ -152,7 +154,7 @@ const HomePage = () => {
               </p>
             </div>
 
-            <div className="w-[300px] p-4 border-2">
+            <div className="w-[300px] p-4 border-2 mb-8">
               <h4 className="[color:var(--font-primary)] text-2xl font-semibold mb-1">
                 CHANGED my LIFE
               </h4>
@@ -172,7 +174,7 @@ const HomePage = () => {
               </p>
             </div>
 
-            <div className="w-[300px] p-4 border-2">
+            <div className="w-[300px] p-4 border-2 mb-8">
               <h4 className="[color:var(--font-primary)] text-2xl font-semibold mb-1">
                 LOVE it more than my FAMILY
               </h4>
