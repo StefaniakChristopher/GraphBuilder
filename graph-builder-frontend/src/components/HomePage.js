@@ -11,11 +11,11 @@ const HomePage = () => {
       {/* to create whitespace */}
       <div className=" w-[1800px]">
         {/* Hero section */}
-        <main className="flex flex-col justify-center items-center h-[1000px] text-center">
-          <h1 className=" text-9xl font-extrabold [color:var(--font-primary)] mb-4">
+        <main className="flex flex-col justify-center items-center md:h-[1000px] h-[750px] text-center">
+          <h1 className=" text-6xl md:text-9xl font-extrabold [color:var(--font-primary)] mb-4">
             GRAPH CRAFTER
           </h1>
-          <h3 className="text-5xl [color:var(--font-secondary)] mb-10">
+          <h3 className="md:text-5xl text-3xl [color:var(--font-secondary)] mb-10">
             <span className="[color:var(--backup-color)]">Visualize</span> data
             in{" "}
             <span className="[color:var(--backup-color)] underline">
