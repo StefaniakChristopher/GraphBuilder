@@ -3,6 +3,7 @@ import { FaChevronRight } from "react-icons/fa";
 import { IoStar } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import StepsPicture from "../assets/stepsgraphcrafter.png";
+import StepsPicture2 from "../assets/stepsgraphcrafter2.png";
 
 const HomePage = () => {
   return (
@@ -10,7 +11,7 @@ const HomePage = () => {
       {/* to create whitespace */}
       <div className=" w-[1800px]">
         {/* Hero section */}
-        <main className="flex flex-col justify-center items-center h-[1000px]">
+        <main className="flex flex-col justify-center items-center h-[1000px] text-center">
           <h1 className=" text-9xl font-extrabold [color:var(--font-primary)] mb-4">
             GRAPH CRAFTER
           </h1>
@@ -61,51 +62,63 @@ const HomePage = () => {
           </div>
         </section>
         {/* How to use section */}
-        <section className="mb-20">
+        <section className="mb-20 flex flex-col justify-center">
           <hr className=" h-2 mx-[100px] [color:var(--font-secondary)] mb-12"></hr>
-          <h2 className="[color:var(--font-primary)] text-6xl ml-8 underline font-bold mb-20">
-            How to use
-          </h2>
-          <div className="flex px-10 justify-evenly">
+          <div className="flex lg:justify-start justify-center">
+            <h2 className="[color:var(--font-primary)] text-6xl ml-0 lg:ml-8 underline font-bold mb-20">
+              How to use
+            </h2>
+          </div>
+          <div className="flex flex-col md:justify-evenly 2xl:flex-row px-10 justify-between items-center">
             <div>
               <img
-                className=" border-2 w-[1000px]"
+                className=" border-2 w-[1000px] lg:flex hidden rounded-xl"
                 src={StepsPicture}
                 alt="Steps illustration"
               />
+              <img
+                className=" border-2 flex lg:hidden rounded-xl"
+                src={StepsPicture2}
+                alt="Steps illustration"
+              />
             </div>
-            <div className="flex flex-col  justify-center">
-              <div>
-                <h3 className="[color:var(--font-primary)] text-6xl mb-4">
-                  Step 1
-                </h3>
-                <p className="[color:var(--font-secondary)] text-xl mb-8">
-                  Choose labels and title
-                </p>
+
+            <div className="flex flex-row 2xl:flex-col 2xl:mt-0 mt-8 justify-betwee 2xl:justify-center">
+              <div className=" 2xl:mr-0 mr-24">
+                <div>
+                  <h3 className="[color:var(--font-primary)] text-4xl sm:text-6xl mb-4">
+                    Step 1
+                  </h3>
+                  <p className="[color:var(--font-secondary)] text-lg sm:text-xl mb-8">
+                    Choose labels and title
+                  </p>
+                </div>
+                <div>
+                  <h3 className="[color:var(--font-primary)] text-4xl sm:text-6xl mb-4">
+                    Step 2
+                  </h3>
+                  <p className="[color:var(--font-secondary)] text-lg sm:text-xl mb-8">
+                    Choose graph type
+                  </p>
+                </div>
               </div>
               <div>
-                <h3 className="[color:var(--font-primary)] text-6xl mb-4">
-                  Step 2
-                </h3>
-                <p className="[color:var(--font-secondary)] text-xl mb-8">
-                  Choose graph type
-                </p>
-              </div>
-              <div>
-                <h3 className="[color:var(--font-primary)] text-6xl mb-4">
-                  Step 3
-                </h3>
-                <p className="[color:var(--font-secondary)] text-xl mb-8">
-                  Fill out the data
-                </p>
-              </div>
-              <div>
-                <h3 className="[color:var(--font-primary)] text-6xl mb-4">
-                  Step 4
-                </h3>
-                <p className="[color:var(--font-secondary)] text-xl">
-                  Create the graph
-                </p>
+                <div>
+                  <h3 className="[color:var(--font-primary)] text-4xl sm:text-6xl mb-4">
+                    Step 3
+                  </h3>
+                  <p className="[color:var(--font-secondary)] text-lg sm:text-xl mb-8">
+                    Fill out the data
+                  </p>
+                </div>
+                <div>
+                  <h3 className="[color:var(--font-primary)] text-4xl sm:text-6xl mb-4">
+                    Step 4
+                  </h3>
+                  <p className="[color:var(--font-secondary)] text-xl">
+                    Create the graph
+                  </p>
+                </div>
               </div>
             </div>
           </div>

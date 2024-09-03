@@ -33,9 +33,7 @@ const HamburgerMenu = () => {
 
       {/* Overlay to detect clicks outside the menu */}
       <div
-        className={`fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300 ease-in-out ${
-          isOpen ? "opacity-100 backdrop-blur-lg" : "opacity-0 pointer-events-none"
-        }`}
+        className={`fixed top-16 right-0 left-0 bottom-0 ${isOpen ? "" : "pointer-events-none"}`}
         onClick={toggleMenu}
       ></div>
 
