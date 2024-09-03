@@ -31,11 +31,13 @@ const HomePage = () => {
         {/* features section */}
         <section className="mb-20">
           <hr className=" h-2 mx-[100px] [color:var(--font-secondary)] mb-12"></hr>
-          <h2 className="[color:var(--font-primary)] text-6xl ml-8 underline font-bold mb-20">
-            Features
-          </h2>
-          <div className="flex justify-evenly">
-            <div className=" rounded-full [background:var(--bg-secondary)] size-64 flex justify-center items-center flex-col">
+          <div className="flex md:justify-start justify-center ">
+            <h2 className="[color:var(--font-primary)] text-6xl ml-0 md:ml-8 underline font-bold mb-20">
+              Features
+            </h2>
+          </div>
+          <div className="flex justify-evenly md:flex-row flex-col items-center">
+            <div className=" rounded-full [background:var(--bg-secondary)] size-64 flex justify-center items-center flex-col mb-8">
               <h3 className="[color:var(--font-primary)] text-3xl font-bold mb-4">
                 Graph Types
               </h3>
@@ -43,7 +45,7 @@ const HomePage = () => {
                 Choose from a variety of graph types to visualize your data.
               </p>
             </div>
-            <div className=" rounded-full [background:var(--bg-secondary)] size-64 flex justify-center items-center flex-col">
+            <div className=" rounded-full [background:var(--bg-secondary)] size-64 flex justify-center items-center flex-col mb-8">
               <h3 className="[color:var(--font-primary)] text-3xl font-bold mb-4">
                 Easy to use
               </h3>
@@ -51,7 +53,7 @@ const HomePage = () => {
                 Create your own graph in seconds by filling out a simple form.
               </p>
             </div>
-            <div className=" rounded-full [background:var(--bg-secondary)] size-64 flex justify-center items-center flex-col">
+            <div className=" rounded-full [background:var(--bg-secondary)] size-64 flex justify-center items-center flex-col mb-8">
               <h3 className="[color:var(--font-primary)] text-3xl font-bold mb-4">
                 Save Graphs
               </h3>
