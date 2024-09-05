@@ -4,7 +4,7 @@ import api from "axios";
 import { graphsServiceHost } from "../host";
 import { CiCirclePlus } from "react-icons/ci";
 import { CiCircleMinus } from "react-icons/ci";
-import { useMediaQuery } from "react-responsive";
+import { useEffect } from "react";
 
 const GraphOptions = ({ setCurrentGraph, graphHeight, setGraphHeight }) => {
 
@@ -18,6 +18,8 @@ const GraphOptions = ({ setCurrentGraph, graphHeight, setGraphHeight }) => {
   });
 
   const [currentMessage, setCurrentMessage] = useState("");
+
+ 
 
   const postGraph = async (newGraph) => {
     setCurrentMessage("");
@@ -39,6 +41,23 @@ const GraphOptions = ({ setCurrentGraph, graphHeight, setGraphHeight }) => {
   };
 
   const [categoryAmt, setCategoryAmt] = useState(2);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const newWidth = window.innerWidth;
+      if (newWidth > 2200 && categoryAmt < 5) {
+        setCategoryAmt(5);
+        setGraphHeight(1110);
+      }
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [categoryAmt]);
 
   const createCategories = () => {
     let categoryArr = [];
