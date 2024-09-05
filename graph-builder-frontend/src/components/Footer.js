@@ -11,41 +11,41 @@ const Footer = () => {
 
   return (
     <footer className="[background-color:var(--font-primary)] [color:var(--font-secondary)] mt-10">
-      <div className="flex justify-between p-6 px-8">
+      <div className="flex justify-between p-6 px-8 items-center">
         <h4 className="text-2xl font-extrabold">Graph Crafter</h4>
         <Nav />
-        <ul className="flex gap-3">
+        <ul className="flex gap-3 text-md lg:text-xl">
           <li>
             <a href="#">
-              <span className="d text-1xl">
+              <span>
                 <FaYoutube />
               </span>
             </a>
           </li>
           <li>
             <a href="#">
-              <span className="d text-1xl">
+              <span>
                 <FaFacebookF />
               </span>
             </a>
           </li>
           <li>
             <a href="#">
-              <span className="d text-1xl">
+              <span>
                 <FaTwitter />
               </span>
             </a>
           </li>
           <li>
             <a href="#">
-              <span className="d text-1xl">
+              <span>
                 <FaInstagram />
               </span>
             </a>
           </li>
           <li>
             <a href="#">
-              <span className="d text-1xl">
+              <span>
                 <FaLinkedinIn />
               </span>
             </a>

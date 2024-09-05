@@ -7,8 +7,12 @@ import AboutPage from "./components/AboutPage";
 import ContactPage from "./components/ContactPage";
 import Footer from "./components/Footer";
 import SavedGraphs from "./components/SavedGraphs";
+import FooterResponsive from "./components/FooterResponsive";
+import { useMediaQuery } from 'react-responsive';
 
 function App() {
+  const isMobile = useMediaQuery({ query: '(max-width: 900px)' });
+
   const [currentGraph, setCurrentGraph] = useState({
     id: 0,
     categories: ["Category 1", "Category 2", "Category 3"],
@@ -44,7 +48,8 @@ function App() {
           }
         />
       </Routes>
-      <Footer />
+
+      {isMobile ? <FooterResponsive /> : <Footer />}
     </Router>
   );
 }
