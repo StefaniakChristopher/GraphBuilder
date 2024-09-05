@@ -14,7 +14,7 @@ const Footer = () => {
       <div className="flex justify-between p-6 px-8 items-center">
         <h4 className="text-2xl font-extrabold">Graph Crafter</h4>
         <Nav />
-        <ul className="flex gap-3 text-md lg:text-xl">
+        <ul className="flex gap-3 text-md xl:text-xl">
           <li>
             <a href="#">
               <span>

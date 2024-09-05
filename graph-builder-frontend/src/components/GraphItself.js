@@ -11,8 +11,13 @@ import {
   plugins,
 } from "chart.js";
 import { bgColorSecondary } from "../colorPalette";
+import { useMediaQuery } from "react-responsive";
+
 
 const GraphItself = ({ currentGraph, graphHeight }) => {
+
+  const isMobile = useMediaQuery({ query: "(max-width: 1536px)" });
+
   const { categories, categoryValues, title, yAxisLabel, xAxisLabel } =
     currentGraph;
 
@@ -78,10 +83,12 @@ const GraphItself = ({ currentGraph, graphHeight }) => {
     ],
   };
 
+  const height = isMobile ? 900 : graphHeight;
+
   return (
     <div
       className="w-4/5 flex flex-col pt-9 mb-20"
-      style={{ height: `${graphHeight}px` }}
+      style={{ height: `${height}px` }}
     >
       <Bar options={options} data={data} />
     </div>

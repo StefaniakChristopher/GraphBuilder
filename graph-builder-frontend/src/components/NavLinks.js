@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const NavLinks = ({ isColumn }) => {
   return (
     <nav>
-      <ul className={`flex ${isColumn ? "flex-col" : "flex-row"} gap-8 lg:gap-16 text-sm lg:text-xl font-bold`}>
+      <ul className={`flex ${isColumn ? "flex-col" : "flex-row"} gap-8 xl:gap-16 text-sm xl:text-xl font-bold`}>
         <li>
           <Link
             to="/"

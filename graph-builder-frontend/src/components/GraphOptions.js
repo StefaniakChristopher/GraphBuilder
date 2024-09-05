@@ -4,8 +4,11 @@ import api from "axios";
 import { graphsServiceHost } from "../host";
 import { CiCirclePlus } from "react-icons/ci";
 import { CiCircleMinus } from "react-icons/ci";
+import { useMediaQuery } from "react-responsive";
 
 const GraphOptions = ({ setCurrentGraph, graphHeight, setGraphHeight }) => {
+
+
   const [newGraph, setNewGraph] = useState({
     title: null,
     xAxisLabel: null,
@@ -79,10 +82,10 @@ const GraphOptions = ({ setCurrentGraph, graphHeight, setGraphHeight }) => {
   };
 
   return (
-    <div className="p-10 w-1/5">
+    <div className="p-10 w-4/5 2xl:w-1/5 max-w-[600px]">
       {/* header */}
-      <div className=" flex items-center justify-center align-middle">
-        <label className="text-white text-3xl font-bold" htmlFor="graphTitle">
+      <div className=" flex items-center justify-center align-middle text-center">
+        <label className="text-white text-3xl font-bold " htmlFor="graphTitle">
           Create Graph
         </label>
       </div>
