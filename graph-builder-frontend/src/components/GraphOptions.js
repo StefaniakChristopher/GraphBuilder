@@ -39,23 +39,6 @@ const GraphOptions = ({ setCurrentGraph, graphHeight, setGraphHeight }) => {
 
   const [categoryAmt, setCategoryAmt] = useState(4);
 
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     const newWidth = window.innerWidth;
-  //     if (newWidth > 2200 && categoryAmt < 5) {
-  //       setCategoryAmt(5);
-  //       setGraphHeight(1110);
-  //     }
-  //   };
-
-  //   handleResize();
-
-  //   window.addEventListener("resize", handleResize);
-  //   return () => {
-  //     window.removeEventListener("resize", handleResize);
-  //   };
-  // }, [categoryAmt]);
-
   const createCategories = () => {
     let categoryArr = [];
     for (let i = 0; i <= categoryAmt; i++) {
@@ -102,6 +85,7 @@ const GraphOptions = ({ setCurrentGraph, graphHeight, setGraphHeight }) => {
               }
             }}
           />
+          {/* delete input pair button */}
           <button
             className="px-2"
             onClick={() => {
