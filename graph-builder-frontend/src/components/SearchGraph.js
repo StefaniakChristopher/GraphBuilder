@@ -42,7 +42,7 @@ const SearchGraph = ({ setOpenSavedGraphs, setCurrentGraph }) => {
   }, []);
 
   return (
-    <div className="p-10 flex flex-col items-center">
+    <div className="p-10 flex flex-col items-center w-3/5 2xl:w-[400px] min-w-[400px]">
       <h2 className="text-3xl font-bold text-white">Saved Graphs</h2>
       {/* search bar */}
       <nav className="flex justify-center items-center align-middle p-5">
@@ -57,11 +57,11 @@ const SearchGraph = ({ setOpenSavedGraphs, setCurrentGraph }) => {
         </div>
       </nav>
       {/* line */}
-      <div className="flex justify-center">
-        <hr className="w-[350px] mt-3 mb-6"></hr>
+      <div className="flex w-full justify-center">
+        <hr className="w-full mt-3 mb-6"></hr>
       </div>
       {/* graphs selection */}
-      <div className="flex align-middle items-center flex-col h-[800px] p-2 overflow-y-auto text-white">
+      <div className="flex align-middle items-center flex-col 2xl:h-[800px] h-[500px] w-full p-2 overflow-y-auto text-white">
         {graphs.length > 0 ? (
           graphs
             .filter(([_, graph]) =>
@@ -70,7 +70,7 @@ const SearchGraph = ({ setOpenSavedGraphs, setCurrentGraph }) => {
             .map(([index, graph]) => (
               <div
                 key={index}
-                className="flex border-white border-2 p-2 w-[300px] mb-4 justify-between items-center "
+                className="flex border-white border-2 p-2 2xl:w-[300px] w-full mb-4 justify-between items-center "
               >
                 <h3 className="text-lg font-bold">{graph.title}</h3>
                 <span>{graph.date}</span>
