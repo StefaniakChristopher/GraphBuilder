@@ -11,8 +11,10 @@ import {
   plugins,
 } from "chart.js";
 import { bgColorSecondary } from "../colorPalette";
+import {  useState } from "react";
 
 const GraphItself = ({ currentGraph }) => {
+
 
   const { categories, categoryValues, title, yAxisLabel, xAxisLabel } =
     currentGraph;
@@ -79,9 +81,10 @@ const GraphItself = ({ currentGraph }) => {
     ],
   };
 
+
   return (
-    <div className="w-4/5 flex flex-col pt-9 mb-20 h-[900px] 2xl:h-4/5">
-        <Bar options={options} data={data} />
+    <div className=" w-4/5 relative pt-9 mb-20 2xl:h-4/5 h-[900px]" >  
+        <Bar className=" max-w-full" options={options} data={data} />
     </div>
   );
 };

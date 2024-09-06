@@ -7,7 +7,7 @@ import { CiCircleMinus } from "react-icons/ci";
 import { useEffect } from "react";
 import { RxCross1 } from "react-icons/rx";
 
-const GraphOptions = ({ setCurrentGraph, graphHeight, setGraphHeight }) => {
+const GraphOptions = ({ setCurrentGraph }) => {
   const [newGraph, setNewGraph] = useState({
     title: null,
     xAxisLabel: null,
@@ -87,7 +87,7 @@ const GraphOptions = ({ setCurrentGraph, graphHeight, setGraphHeight }) => {
           />
           {/* delete input pair button */}
           <button
-            className="px-2"
+            className="px-2 hover:text-red-700 duration-300"
             onClick={() => {
               if (categoryAmt > 1) {
                 let newCategories = [...newGraph.categories];

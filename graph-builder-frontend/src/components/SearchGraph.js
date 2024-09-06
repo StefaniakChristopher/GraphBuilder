@@ -1,13 +1,12 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { RxCross1 } from "react-icons/rx";
 import { HiMiniMagnifyingGlass } from "react-icons/hi2";
 import { FaRegTrashAlt } from "react-icons/fa";
 import axios from "axios";
 import { graphsServiceHost } from "../host";
 import { GrDocumentTransfer } from "react-icons/gr";
 
-const SearchGraph = ({ setOpenSavedGraphs, setCurrentGraph }) => {
+const SearchGraph = ({ setCurrentGraph }) => {
   const [graphs, setGraphs] = useState([]);
   const [searchText, setSearchText] = useState("");
 
@@ -42,7 +41,7 @@ const SearchGraph = ({ setOpenSavedGraphs, setCurrentGraph }) => {
   }, []);
 
   return (
-    <div className="p-10 flex flex-col items-center w-3/5 2xl:w-[400px] min-w-[400px]">
+    <div className="p-10 flex flex-col items-center w-3/5 2xl:w-1/5 min-w-[415px]">
       <h2 className="text-3xl font-bold text-white">Saved Graphs</h2>
       {/* search bar */}
       <nav className="flex justify-center items-center align-middle p-5">
@@ -70,7 +69,7 @@ const SearchGraph = ({ setOpenSavedGraphs, setCurrentGraph }) => {
             .map(([index, graph]) => (
               <div
                 key={index}
-                className="flex border-white border-2 p-2 2xl:w-[300px] w-full mb-4 justify-between items-center "
+                className="flex border-white border-2 p-2 w-full mb-4 justify-between items-center "
               >
                 <h3 className="text-lg font-bold">{graph.title}</h3>
                 <span>{graph.date}</span>
