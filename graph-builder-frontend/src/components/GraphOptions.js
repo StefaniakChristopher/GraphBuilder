@@ -5,10 +5,9 @@ import { graphsServiceHost } from "../host";
 import { CiCirclePlus } from "react-icons/ci";
 import { CiCircleMinus } from "react-icons/ci";
 import { useEffect } from "react";
+import { RxCross1 } from "react-icons/rx";
 
 const GraphOptions = ({ setCurrentGraph, graphHeight, setGraphHeight }) => {
-
-
   const [newGraph, setNewGraph] = useState({
     title: null,
     xAxisLabel: null,
@@ -18,8 +17,6 @@ const GraphOptions = ({ setCurrentGraph, graphHeight, setGraphHeight }) => {
   });
 
   const [currentMessage, setCurrentMessage] = useState("");
-
- 
 
   const postGraph = async (newGraph) => {
     setCurrentMessage("");
@@ -40,35 +37,38 @@ const GraphOptions = ({ setCurrentGraph, graphHeight, setGraphHeight }) => {
     }
   };
 
-  const [categoryAmt, setCategoryAmt] = useState(2);
+  const [categoryAmt, setCategoryAmt] = useState(4);
 
-  useEffect(() => {
-    const handleResize = () => {
-      const newWidth = window.innerWidth;
-      if (newWidth > 2200 && categoryAmt < 5) {
-        setCategoryAmt(5);
-        setGraphHeight(1110);
-      }
-    };
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     const newWidth = window.innerWidth;
+  //     if (newWidth > 2200 && categoryAmt < 5) {
+  //       setCategoryAmt(5);
+  //       setGraphHeight(1110);
+  //     }
+  //   };
 
-    handleResize();
+  //   handleResize();
 
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [categoryAmt]);
+  //   window.addEventListener("resize", handleResize);
+  //   return () => {
+  //     window.removeEventListener("resize", handleResize);
+  //   };
+  // }, [categoryAmt]);
 
   const createCategories = () => {
     let categoryArr = [];
     for (let i = 0; i <= categoryAmt; i++) {
       categoryArr.push(
         // dyanmic category input
-        <div key={i} className=" flex gap-4 mb-4">
+        <div
+          key={i}
+          className=" bg-transparent mb-4 rounded-lg flex text-white"
+        >
           <input
             type="text"
             placeholder={`Category ${i + 1}`}
-            className="p-4 rounded-lg w-1/2 text-lg"
+            className="p-4 rounded-lg w-1/2 text-lg border-r-4 bg-transparent focus:outline-none"
             onChange={(e) => {
               let newCategories = [...newGraph.categories];
 
@@ -77,13 +77,17 @@ const GraphOptions = ({ setCurrentGraph, graphHeight, setGraphHeight }) => {
                 ...prevState,
                 categories: newCategories,
               }));
+
+              if (i === categoryAmt) {
+                setCategoryAmt(categoryAmt + 1);
+              }
             }}
           />
           {/* dynamic number input */}
           <input
             type="number"
             placeholder={`Value ${i + 1}`}
-            className="p-4 rounded-lg w-1/2 text-lg"
+            className="p-4 rounded-lg w-[37%] text-lg border-r-4 bg-transparent focus:outline-none"
             onChange={(e) => {
               let newValues = [...newGraph.categoryValues];
 
@@ -92,8 +96,33 @@ const GraphOptions = ({ setCurrentGraph, graphHeight, setGraphHeight }) => {
                 ...prevState,
                 categoryValues: newValues,
               }));
+
+              if (i === categoryAmt) {
+                setCategoryAmt(categoryAmt + 1);
+              }
             }}
           />
+          <button
+            className="px-2"
+            onClick={() => {
+              if (categoryAmt > 1) {
+                let newCategories = [...newGraph.categories];
+                let newValues = [...newGraph.categoryValues];
+                newCategories.splice(i, 1);
+                newValues.splice(i, 1);
+                setNewGraph((prevState) => ({
+                  ...prevState,
+                  categories: newCategories,
+                  categoryValues: newValues,
+                }));
+                setCategoryAmt(categoryAmt - 1);
+              } else {
+                console.log("You must have at least two categories."); // change this to more user friendly message later
+              }
+            }}
+          >
+            <RxCross1 />
+          </button>
         </div>
       );
     }
@@ -101,7 +130,7 @@ const GraphOptions = ({ setCurrentGraph, graphHeight, setGraphHeight }) => {
   };
 
   return (
-    <div className="p-10 w-4/5 2xl:w-1/5 max-w-[600px]">
+    <div className="p-10 w-4/5 2xl:w-1/5 min-w-[400px] max-w-[600px]">
       {/* header */}
       <div className=" flex items-center justify-center align-middle text-center">
         <label className="text-white text-3xl font-bold " htmlFor="graphTitle">
@@ -121,13 +150,13 @@ const GraphOptions = ({ setCurrentGraph, graphHeight, setGraphHeight }) => {
             }))
           }
           placeholder="Enter Graph Title"
-          className="p-2 mb-3 rounded-lg w-full"
+          className="p-2 mb-3 rounded-lg w-full bg-transparent text-white border-b-2 border-white"
         />
         {/* label for categories */}
         <input
           type="text"
           placeholder="Categories Label"
-          className="p-2 rounded-lg mb-3 w-full"
+          className="p-2 rounded-lg mb-3 w-full bg-transparent text-white border-b-2 border-white"
           onChange={(e) => {
             setNewGraph((prevState) => ({
               ...prevState,
@@ -139,7 +168,7 @@ const GraphOptions = ({ setCurrentGraph, graphHeight, setGraphHeight }) => {
         <input
           type="text"
           placeholder="Values Label"
-          className="p-2 rounded-lg w-full mb-3"
+          className="p-2 rounded-lg w-full mb-3 bg-transparent text-white border-b-2 border-white"
           onChange={(e) => {
             setNewGraph((prevState) => ({
               ...prevState,
@@ -150,40 +179,19 @@ const GraphOptions = ({ setCurrentGraph, graphHeight, setGraphHeight }) => {
         {/* graph type */}
         <div className="mt-2 flex flex-col">
           <label className=" text-white">Select Graph Type: </label>
-          <select className="p-2 rounded-lg w-full mt-1">
-            <option value="bar">Bar</option>
-            <option value="pie">Pie</option>
+          <select className="p-2 rounded-lg w-full mt-1 bg-transparent text-white border-2 border-white">
+            <option value="bar" className="text-black cursor-pointer">
+              Bar
+            </option>
+            <option value="pie" className="text-black cursor-pointer">
+              Pie
+            </option>
           </select>
         </div>
       </div>
-      {/* entry increase/decrease buttons */}
-      <div className="flex items-center align-middle justify-between text-white gap-4 my-4">
-        <button
-          onClick={() => {
-            setCategoryAmt(categoryAmt - 1);
-            setGraphHeight(graphHeight - 70);
-          }}
-          className={`w-[45px] rounded-lg p-2 duration-300 text-2xl flex items-center justify-center align-middle ml-16 ${
-            categoryAmt === 1
-              ? "cursor-disabled bg-slate-500 disabled:"
-              : "bg-blue-600 hover:bg-blue-500"
-          }`}
-          disabled={categoryAmt === 1 ? true : false}
-        >
-          <CiCircleMinus />
-        </button>
-        <button
-          onClick={() => {
-            setCategoryAmt(categoryAmt + 1);
-            setGraphHeight(graphHeight + 70);
-          }}
-          className={`w-[45px] bg-blue-600 rounded-lg p-2 hover:bg-blue-500 duration-300 text-2xl flex items-center justify-center align-middle mr-16`}
-        >
-          <CiCirclePlus />
-        </button>
-      </div>
       {/* dynamic entry generation */}
-      <div className="flex flex-col">{createCategories()}</div>
+      <h4 className="text-white my-4">Enter Data:</h4>
+      <div className="flex flex-col overflow-y-auto h-[450px]">{createCategories()}</div>
       {/* create graph button */}
       <div className="flex items-center justify-center">
         {categoryAmt > 0 && (
