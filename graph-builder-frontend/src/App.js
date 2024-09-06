@@ -18,8 +18,8 @@ function App() {
     categories: ["Category 1", "Category 2", "Category 3"],
     categoryValues: [10, 4, 23],
     title: "GRAPH TITLE",
-    yAxisLabel: "Y axis Label",
-    xAxisLabel: "X axis Label",
+    yAxisLabel: "Values Label",
+    xAxisLabel: "Categories Label",
   });
 
   return (

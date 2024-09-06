@@ -117,9 +117,9 @@ const GraphOptions = ({ setCurrentGraph }) => {
     <div className="p-10 w-4/5 2xl:w-1/5 min-w-[400px] max-w-[600px]">
       {/* header */}
       <div className=" flex items-center justify-center align-middle text-center">
-        <label className="text-white text-3xl font-bold " htmlFor="graphTitle">
+        <h1 className="text-white text-3xl font-bold hidden 2xl:flex">
           Create Graph
-        </label>
+        </h1>
       </div>
       <hr className="my-6"></hr>
       {/* graph title input */}

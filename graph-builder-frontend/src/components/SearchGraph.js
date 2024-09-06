@@ -42,7 +42,7 @@ const SearchGraph = ({ setCurrentGraph }) => {
 
   return (
     <div className="p-10 flex flex-col items-center w-3/5 2xl:w-1/5 min-w-[415px]">
-      <h2 className="text-3xl font-bold text-white">Saved Graphs</h2>
+      <h2 className="text-3xl font-bold text-white hidden 2xl:flex">Saved Graphs</h2>
       {/* search bar */}
       <nav className="flex justify-center items-center align-middle p-5">
         <div className="relative">
