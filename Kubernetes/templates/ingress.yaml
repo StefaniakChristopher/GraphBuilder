@@ -78,13 +78,6 @@ spec:
             name: contactus-service
             port:
               number: 8080
-      - pathType: Prefix
-        path: /_cat/indices?v
-        backend:
-          service:
-            name: elasticsearch-service
-            port:
-              number: 9200
   - host: metrics.graphcrafter.com
     http:
       paths:
@@ -95,3 +88,13 @@ spec:
             name: grafana-service
             port:
               number: 3000
+  - host: elasticsearch.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: elasticsearch-service
+            port:
+              number: 9200

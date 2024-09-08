@@ -2,3 +2,4 @@ Terraform/.terraform/providers/registry.terraform.io/hashicorp/azurerm/3.65.0/wi
 Terraform/.terraform.lock.hcl
 Kubernetes/templates/token.yaml
 Kubernetes/templates/sengrid-secret.yaml
+Kubernetes/templates/elasticsearch-secret.yaml
