@@ -6,18 +6,28 @@ data:
   fluent-bit.conf: |
     [SERVICE]
         Flush        1
-        Log_Level    info
-    
+        Log_Level    debug
+        Parsers_File parsers.conf
+
     [INPUT]
         Name         tail
-        Path         /var/log/containers/*.log
+        Path         /shared/logs/*.log
         Parser       docker
-        Tag          kube.*
-    
+        Tag           kube.*
+        Refresh_Interval 5
+
     [OUTPUT]
         Name         es
         Match        kube.*
-        Host         elasticsearch
+        Host         elasticsearch-service
         Port         9200
-        Index        spring-logs
+        Index        generic-logs
         Type         _doc
+
+  parsers.conf: |
+    [PARSER]
+        Name         docker
+        Format       json
+        Time_Key     time
+        Time_Format  %Y-%m-%dT%H:%M:%S.%L
+        Time_Keep    On

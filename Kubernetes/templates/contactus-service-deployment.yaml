@@ -18,6 +18,9 @@ spec:
       - name: gc-contactus-service
         image: chrisstefaniak/gc-contactus-service:latest
         imagePullPolicy: Always 
+        volumeMounts:
+          - name: shared-logs
+            mountPath: "/shared/logs"
         env:
           - name: SENDGRID_API_KEY
             valueFrom:
@@ -28,4 +31,8 @@ spec:
             value: "prod"
         ports:
         - containerPort: 8080
+      volumes:
+        - name: shared-logs
+          persistentVolumeClaim:
+            claimName: shared-logs-pvc
         

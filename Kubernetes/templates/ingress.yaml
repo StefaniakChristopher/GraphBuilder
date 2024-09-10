@@ -88,7 +88,7 @@ spec:
             name: grafana-service
             port:
               number: 3000
-  - host: elasticsearch.example.com
+  - host: elasticsearch.example.com # remove later
     http:
       paths:
       - pathType: Prefix

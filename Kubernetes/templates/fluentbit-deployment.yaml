@@ -1,31 +1,48 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: fluent-bit
+  name: fluentbit
+  labels:
+    app: fluentbit
 spec:
+  replicas: 1
   selector:
     matchLabels:
-      app: fluent-bit
+      app: fluentbit
   template:
     metadata:
       labels:
-        app: fluent-bit
+        app: fluentbit
     spec:
       containers:
-        - name: fluent-bit
-          image: fluent/fluent-bit:3.1.6
-          volumeMounts:
-            - name: var-log
-              mountPath: /var/log
-            - name: fluent-bit-config
-              mountPath: /fluent-bit/etc
-          envFrom:
-            - configMapRef:
-                name: fluent-bit-config
+      - name: logging-fluentbit
+        image: docker.io/fluent/fluent-bit:1.6
+        securityContext:
+          privileged: true
+        volumeMounts:
+          # host volumes with logs
+          - name: var-log-containers
+            mountPath: "/var/log/containers"
+          - name: var-log-pods
+            mountPath: "/var/log/pods"
+          - name: var-lib-docker-containers
+            mountPath: "/var/lib/docker/containers"
+          - name: shared-logs
+            mountPath: "/shared/logs"
       volumes:
-        - name: var-log
-          hostPath:
-            path: /var/log
-        - name: fluent-bit-config
-          configMap:
-            name: fluent-bit-config
+      # host volumes with logs
+      - name: var-log-containers
+        hostPath:
+          path: "/var/log/containers"
+          type: ""
+      - name: var-log-pods
+        hostPath:
+          path: "/var/log/pods"
+          type: ""
+      - name: var-lib-docker-containers
+        hostPath:
+          path: "/var/lib/docker/containers"
+          type: ""
+      - name: shared-logs
+        persistentVolumeClaim:
+          claimName: shared-logs-pvc
