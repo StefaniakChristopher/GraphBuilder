@@ -304,9 +304,12 @@ terminationGracePeriodSeconds:
 
 priorityClassName: ""
 
-env: []
-#  - name: FOO
-#    value: "bar"
+env:
+  - name: ES_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: elasticsearch-secret
+        key: elastic-password
 
 # The envWithTpl array below has the same usage as "env", but is using the tpl function to support templatable string.
 # This can be useful when you want to pass dynamic values to the Chart using the helm argument "--set <variable>=<value>"
@@ -404,7 +407,7 @@ config:
         K8S-Logging.Parser On
         K8S-Logging.Exclude On
 
-  ## https://docs.fluentbit.io/manual/pipeline/outputs
+  ## https://docs.fluentbit.io/manual/pipeline/outputs  ## {{ .Values.elasticsearchPassword }}
   outputs: |
     [OUTPUT]
         Name es
@@ -413,6 +416,8 @@ config:
         Logstash_Format On
         Retry_Limit False
         Suppress_Type_Name On
+        HTTP_User elastic
+        HTTP_Passwd ${ES_PASSWORD}
 
     [OUTPUT]
         Name es
@@ -422,6 +427,8 @@ config:
         Logstash_Prefix node
         Retry_Limit False
         Suppress_Type_Name On
+        HTTP_User elastic
+        HTTP_Passwd ${ES_PASSWORD}
 
   ## https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/classic-mode/upstream-servers
   ## This configuration is deprecated, please use `extraFiles` instead.
