@@ -95,6 +95,6 @@ spec:
         path: /
         backend:
           service:
-            name: elasticsearch-service
+            name: elasticsearch-master
             port:
               number: 9200

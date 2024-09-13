@@ -23,6 +23,8 @@ spec:
                 secretKeyRef:
                   name: elasticsearch-secret
                   key: elastic-password
+            - name: xpack.security.enabled
+              value: "false"
             - name: xpack.security.http.ssl.enabled
               value: "false"
             - name: xpack.license.self_generated.type

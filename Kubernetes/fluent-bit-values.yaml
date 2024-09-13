@@ -1,0 +1,22 @@
+backend:
+  type: es
+  es:
+    logstash_prefix: fluentbit
+    logstash_format: true
+    http_user: elastic
+    http_passwd: ${ES_PASSWORD}
+    suppress_type_name: On
+    trace_output: On
+    trace_error: On
+  
+env:
+  - name: ES_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: elasticsearch-secret
+        key: elastic-password
+
+# for: helm upgrade --install fluent-bit fluent/fluent-bit -f fluent-bit-values.yaml
+
+
+#change host and see if it reflects in fluentbit
