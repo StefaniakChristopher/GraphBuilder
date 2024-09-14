@@ -19,7 +19,4 @@ spec:
         image: chrisstefaniak/gb-frontend:latest
         imagePullPolicy: Always
         ports:
-        - containerPort: 4000
-        env:
-        - name: REACT_APP_HOST
-          value: "graphcrafter.com"
+        - containerPort: 80

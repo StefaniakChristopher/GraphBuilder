@@ -1,4 +1,4 @@
-FROM node:20
+FROM node:20 AS build
 
 WORKDIR /app
 
@@ -8,8 +8,16 @@ RUN npm install
 
 COPY . .
 
-ENV PORT=4000
+# provided through CLI for multi-stage builds, since only one stage it is here
+ARG REACT_APP_HOST=graphcrafter.com:3333
+ENV REACT_APP_HOST=${REACT_APP_HOST}
 
-EXPOSE 4000
+RUN npm run build
 
-CMD ["npm", "start"]
+FROM nginx:alpine
+
+COPY --from=build /app/build /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
