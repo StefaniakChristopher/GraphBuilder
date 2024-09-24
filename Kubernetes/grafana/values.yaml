@@ -494,7 +494,12 @@ env: {}
 ##     - name: <key>
 ##       valueFrom:
 ##         <value rendered as YAML>
-envValueFrom: {}
+envValueFrom:
+  ES_PASSWORD:
+    secretKeyRef:
+      name: elasticsearch-secret
+      key: elastic-password
+
   #  ENV_NAME:
   #    configMapKeyRef:
   #      name: configmap-name
@@ -633,7 +638,7 @@ datasources:
           esVersion: 7
           maxConcurrentShardRequests: 256
         secureJsonData:
-          basicAuthPassword: mysecurepassword
+          basicAuthPassword: ${ES_PASSWORD}
         uid: 123e4567-e89b-12d3-a456-426614174000
 
 ## Configure grafana alerting (can be templated)
