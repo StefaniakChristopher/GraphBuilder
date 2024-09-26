@@ -385,9 +385,9 @@ config:
   inputs: |
     [INPUT]
         Name tail
-        Path /var/log/containers/*.log
-        multiline.parser docker, cri
-        Tag kube.*
+        Path /var/log/containers/gc-graphs-service-deployment*.log
+        multiline.parser docker, cri, java
+        Tag app.*
         Mem_Buf_Limit 5MB
         Skip_Long_Lines On
 
@@ -400,8 +400,14 @@ config:
   ## https://docs.fluentbit.io/manual/pipeline/filters
   filters: |
     [FILTER]
+        Name parser
+        Match *
+        Key_Name log
+        Parser java_multi
+
+    [FILTER]
         Name kubernetes
-        Match kube.*
+        Match *
         Merge_Log On
         Keep_Log Off
         K8S-Logging.Parser On
@@ -411,13 +417,15 @@ config:
   outputs: |
     [OUTPUT]
         Name es
-        Match kube.*
+        Match *
         Host elasticsearch-master
         Logstash_Format On
         Retry_Limit False
         Suppress_Type_Name On
         HTTP_User elastic
         HTTP_Passwd ${ES_PASSWORD}
+        Replace_Dots On
+        Type _doc
 
     [OUTPUT]
         Name es
@@ -429,6 +437,12 @@ config:
         Suppress_Type_Name On
         HTTP_User elastic
         HTTP_Passwd ${ES_PASSWORD}
+        Replace_Dots On
+        Type _doc
+
+    [OUTPUT]
+        Name stdout
+        Match *
 
   ## https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/classic-mode/upstream-servers
   ## This configuration is deprecated, please use `extraFiles` instead.
@@ -436,6 +450,12 @@ config:
 
   ## https://docs.fluentbit.io/manual/pipeline/parsers
   customParsers: |
+    [PARSER]
+        Name java_multi
+        Format regex
+        Regex ^(?<time>[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{3}Z)\s+(?<level>\S+)\s+(?<pid>\S+)\s+---\s+\[\s*(?<thread>[^\]]+)\]\s+(?<logger>[^\s]+)\s+:\s+(?<message>.+)$
+        Time_Key timestamp
+
     [PARSER]
         Name docker_no_time
         Format json
@@ -509,7 +529,7 @@ initContainers: []
 #     image: bitnami/kubectl:{{ .Capabilities.KubeVersion.Major }}.{{ .Capabilities.KubeVersion.Minor }}
 #     command: ['kubectl', 'version']
 
-logLevel: debug
+logLevel: info
 
 hotReload:
   enabled: false
