@@ -37,7 +37,7 @@ const GraphOptions = ({ setCurrentGraph }) => {
     }
   };
 
-  const [categoryAmt, setCategoryAmt] = useState(4);
+  const [categoryAmt, setCategoryAmt] = useState(3);
 
   const createCategories = () => {
     let categoryArr = [];
@@ -69,8 +69,8 @@ const GraphOptions = ({ setCurrentGraph }) => {
           {/* dynamic number input */}
           <input
             type="number"
-            placeholder={`Value ${i + 1}`}
-            className="p-4 rounded-lg w-[37%] text-lg border-r-4 bg-transparent focus:outline-none"
+            placeholder={`Val ${i + 1}`}
+            className="p-4 rounded-lg w-[37%] text-lg border-r-4 bg-transparent focus:outline-none no-spinner"
             onChange={(e) => {
               let newValues = [...newGraph.categoryValues];
 
@@ -114,7 +114,7 @@ const GraphOptions = ({ setCurrentGraph }) => {
   };
 
   return (
-    <div className="p-10 w-4/5 2xl:w-1/5 min-w-[400px] max-w-[600px]">
+    <div className="p-10 w-4/5 2xl:w-1/5 min-w-[400px] max-w-[600px] h-full">
       {/* header */}
       <div className=" flex items-center justify-center align-middle text-center">
         <h1 className="text-white text-3xl font-bold hidden 2xl:flex">
@@ -175,13 +175,13 @@ const GraphOptions = ({ setCurrentGraph }) => {
       </div>
       {/* dynamic entry generation */}
       <h4 className="text-white my-4">Enter Data:</h4>
-      <div className="flex flex-col overflow-y-auto h-[450px]">{createCategories()}</div>
+      <div className="flex flex-col overflow-y-auto 2xl:max-h-[40%] 2xl:h-auto  h-[450px]">{createCategories()}</div>
       {/* create graph button */}
       <div className="flex items-center justify-center">
         {categoryAmt > 0 && (
           <button
             onClick={() => postGraph(newGraph)}
-            className="bg-blue-600 w-[250px] rounded-lg p-4 text-2xl font-extrabold text-white  hover:bg-blue-500 duration-300"
+            className="bg-blue-600 w-[250px] mt-4 rounded-lg p-4 text-2xl font-extrabold text-white  hover:bg-blue-500 duration-300"
           >
             CREATE GRAPH
           </button>

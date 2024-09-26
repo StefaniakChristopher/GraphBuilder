@@ -38,3 +38,15 @@ body {
 .overflow-y-auto::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+
+/* Hide the spinners for number input */
+.no-spinner::-webkit-outer-spin-button,
+.no-spinner::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.no-spinner {
+  -moz-appearance: textfield; /* Firefox */
+}
