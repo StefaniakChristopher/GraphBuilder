@@ -385,9 +385,17 @@ config:
   inputs: |
     [INPUT]
         Name tail
+        Path /var/log/containers/gc-contactus-service-deployment*.log
+        multiline.parser docker, cri, java
+        Tag contactus.*
+        Mem_Buf_Limit 5MB
+        Skip_Long_Lines On
+
+    [INPUT]
+        Name tail
         Path /var/log/containers/gc-graphs-service-deployment*.log
         multiline.parser docker, cri, java
-        Tag app.*
+        Tag graphs.*
         Mem_Buf_Limit 5MB
         Skip_Long_Lines On
 
@@ -401,9 +409,15 @@ config:
   filters: |
     [FILTER]
         Name parser
-        Match *
+        Match graphs.*
         Key_Name log
         Parser java_multi
+
+    [FILTER]
+        Name parser
+        Match contactus.*
+        Key_Name log
+        Parser contactus-parser
 
     [FILTER]
         Name kubernetes
@@ -412,6 +426,8 @@ config:
         Keep_Log Off
         K8S-Logging.Parser On
         K8S-Logging.Exclude On
+
+    
 
   ## https://docs.fluentbit.io/manual/pipeline/outputs  ## {{ .Values.elasticsearchPassword }}
   outputs: |
@@ -454,6 +470,12 @@ config:
         Name java_multi
         Format regex
         Regex ^(?<time>[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{3}Z)\s+(?<level>\S+)\s+(?<pid>\S+)\s+---\s+\[\s*(?<thread>[^\]]+)\]\s+(?<logger>[^\s]+)\s+:\s+(?<message>.+)$
+        Time_Key timestamp
+
+    [PARSER]
+        Name contactus-parser
+        Format regex
+        Regex ^(?<time>[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2})\s+(?<level>\S+)\s+(?<logger>\S{1,36})\s+-\s+(?<message>.+)$
         Time_Key timestamp
 
     [PARSER]
