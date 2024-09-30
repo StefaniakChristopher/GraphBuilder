@@ -2,7 +2,7 @@
 
 Graph Crafter offers a method to quickly visualize data with an easy-to-use interface
 
-It can currently render bar graphs, but different graph types, such as pie graphs, are planned to be implemented
+It can currently render bar graphs, and different graph types, such as pie graphs, are planned to be implemented
 
 ![graphcrafter-buildgraph](graphcrafter-buildgraph.png)
 
