@@ -24,7 +24,7 @@ It can currently render bar graphs, but different graph types, such as pie graph
 
 - The graph is then displayed and automatically saved
 
-### Retrieveing or deleting a saved graph
+### Retrieving or deleting a saved graph
 
 - The user can navigate to the "My Graphs" section through the navbar
 
@@ -53,7 +53,7 @@ It can currently render bar graphs, but different graph types, such as pie graph
 - Sendgrid API for sending emails
 - Charts.js for graph appearance
 - Docker for containerization
-- Helm for managing deployements in Kubernetes
+- Helm for managing deployments in Kubernetes
 - Observability platform including the following:
     - Prometheus
     - Grafana
@@ -67,7 +67,7 @@ Install the following:
 - Docker
 - Kind (Kubernetes)
 - Helm
-- Sengrid and ElasticSearch enviornment variables
+- Sengrid and ElasticSearch environment variables
 
 Include the env variables:
 
